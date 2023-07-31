@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Seat Reservation</h1>
+<div mat-dialog-content>
+  <p>Movie Name:{{bookingDetails.movieName}}</p>
+  <p>date:{{bookingDetails.date}}</p>
+  <p>Theatre: {{ bookingDetails.theatreName }}</p>
+  <p>No of seats:{{bookingDetails.totalSeats}}</p>
+  <p>seats booked:{{bookingDetails.seatNames}}</p>
+  <p>price:{{bookingDetails.totalAmount}}</p>
+  <p>timings:{{bookingDetails.movieTimings}}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="onClickFunction()">Book Movie</button>
+  <button mat-button [mat-dialog-close]="true">Close</button>
+</div>

@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@ng-bootstrap/ng-bootstrap": "^15.1.0",
+    "@popperjs/core": "^2.11.8",
+    "ngx-slick-carousel": "^15.0.0"
+  }
+}
