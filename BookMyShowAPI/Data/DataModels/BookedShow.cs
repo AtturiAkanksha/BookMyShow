@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.DataModels
 {
-    public class BookedShows
+    public class BookedShow
     {
         [Key]
         [Column("BookingId")]
@@ -22,8 +22,8 @@ namespace Data.DataModels
         [Column("Date")]
         public DateTime Date { get; set; }
         [Column("TotalSeats")]
-        public int TotalSeats { get; set; }
-        [Column("SeatNames")]
+        public int SeatsCount { get; set; }
+        [Column("SeatsNames")]
         public string SeatNames { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 using Service.Contracts;
 using DomainModels;
 
-namespace BookMyShowAPI.Controllers
+namespace BookMyShowWeb.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -21,7 +21,7 @@ namespace BookMyShowAPI.Controllers
         {
             try
             {
-                IEnumerable<Movies> movies = _moviesService.GetMovies(location);
+                IEnumerable<Movie> movies = _moviesService.GetMovies(location);
                 return Ok(movies);
             }
             catch (Exception)

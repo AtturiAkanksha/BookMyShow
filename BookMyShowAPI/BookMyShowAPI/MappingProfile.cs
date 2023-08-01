@@ -1,18 +1,18 @@
 ﻿using AutoMapper;
-using BookMyShowAPI.DTOs;
+using BookMyShowWeb.DTOs;
 using Data.DataModels;
 using DomainModels;
 
-namespace BookMyShowAPI
+namespace BookMyShowWeb
 {
     public class MappingProfile : Profile
     {
         public MappingProfile()
         {
-            CreateMap<BookingRequest, BookedShows>().ForMember(dest => dest.SeatNames, opt => opt.MapFrom(src => string.Join(",", src.SeatNames))).ReverseMap();
-            CreateMap<BookedShows, BookingRequest>().ForMember(dest => dest.SeatNames, opt => opt.MapFrom(src => ParseStringToIntList(src.SeatNames)));
-            CreateMap<DomainModels.Movies, Data.DataModels.Movies>().ReverseMap();
-            CreateMap<DomainModels.Theatres, Data.DataModels.Theatres>().ReverseMap();
+            CreateMap<BookingRequest, BookedShow>().ForMember(dest => dest.SeatNames, opt => opt.MapFrom(src => string.Join(",", src.SeatNames))).ReverseMap();
+            CreateMap<BookedShow, BookingRequest>().ForMember(dest => dest.SeatNames, opt => opt.MapFrom(src => ParseStringToIntList(src.SeatNames)));
+            CreateMap<DomainModels.Movie, Data.DataModels.Movie>().ReverseMap();
+            CreateMap<DomainModels.Theatre, Data.DataModels.Theatre>().ReverseMap();
             CreateMap<BookingRequestDTO, BookingRequest>().ReverseMap();
         }
 

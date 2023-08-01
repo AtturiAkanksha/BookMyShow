@@ -3509,15 +3509,14 @@
     },
     "DomainModels/1.0.0": {
       "type": "project",
-      "path": "../Repository/DomainModels.csproj",
-      "msbuildProject": "../Repository/DomainModels.csproj"
+      "path": "../DomainModels/DomainModels.csproj",
+      "msbuildProject": "../DomainModels/DomainModels.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.1",
-      "Data >= 1.0.0",
-      "DomainModels >= 1.0.0"
+      "Data >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -3526,11 +3525,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\Service\\Service.csproj",
+      "projectUniqueName": "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\Service\\Service.csproj",
       "projectName": "Service",
-      "projectPath": "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\Service\\Service.csproj",
+      "projectPath": "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\Service\\Service.csproj",
       "packagesPath": "C:\\Users\\akanksha.a\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\Service\\obj\\",
+      "outputPath": "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\Service\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\akanksha.a\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3547,11 +3546,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\Data\\Data.csproj": {
-              "projectPath": "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\Data\\Data.csproj"
-            },
-            "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\Repository\\DomainModels.csproj": {
-              "projectPath": "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\Repository\\DomainModels.csproj"
+            "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\Data\\Data.csproj": {
+              "projectPath": "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\Data\\Data.csproj"
             }
           }
         }

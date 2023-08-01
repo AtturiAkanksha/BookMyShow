@@ -1,10 +1,10 @@
-﻿using BookMyShowAPI.DTOs;
+﻿using BookMyShowWeb.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Service.Contracts;
 using AutoMapper;
 using DomainModels;
 
-namespace BookMyShowAPI.Controllers
+namespace BookMyShowWeb.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

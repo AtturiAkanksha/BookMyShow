@@ -9,7 +9,7 @@
         public string? MovieTimings { get; set; }
         public float TotalAmount { get; set; }
         public DateTime Date { get; set; }
-        public int TotalSeats { get; set; }
+        public int SeatsCount { get; set; }
         public List<int>? SeatNames { get; set; }
     }
 }

@@ -3,7 +3,7 @@ namespace Service.Contracts
 {
     public interface IMoviesService
     {
-        IEnumerable<Movies> GetMovies(string location);
-        Movies GetById(int id);
+        IEnumerable<Movie> GetMovies(string location);
+        Movie GetById(int id);
     }
 }

@@ -2,33 +2,31 @@
 using Microsoft.AspNetCore.Mvc;
 using Service.Contracts;
 
-namespace BookMyShowAPI.Controllers
+namespace BookMyShowWeb.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class TheatreController : ControllerBase
     {
         private readonly ITheatreService _theatreService;
-        private readonly IReservedSeatsService _seatsService;
 
-        public TheatreController(ITheatreService theatreService, IReservedSeatsService seatsService)
+        public TheatreController(ITheatreService theatreService)
         {
             _theatreService = theatreService;
-            _seatsService = seatsService;
         }
 
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            DomainModels.Theatres theatre = _theatreService.GetTheatres(id);
+            DomainModels.Theatre theatre = _theatreService.GetTheatres(id);
             return Ok(theatre);
         }
 
         [HttpGet]
         [Route("getReservedSeatsData")]
-        public IEnumerable<ReservedSeats> GetReservedSeats()
+        public IEnumerable<ReservedSeat> GetReservedSeats()
         {
-            return _seatsService.GetAll();
+            return _theatreService.Seats();
         }
     }
 }

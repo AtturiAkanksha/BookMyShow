@@ -3,12 +3,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.DataModels
 {
-    public class ReservedSeats
+    public class ReservedSeat
     {
         [Key]
         [Column("Id")]
         public int Id { get; set; }
-        [Column("SeatNumber")]
+        [Column("SeatsNumber")]
         public int SeatNumber { get; set; }
         [Column("TheatreId")]
         public int TheatreId { get; set; }

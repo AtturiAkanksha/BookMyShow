@@ -19,9 +19,9 @@ namespace Data
         {
         }
 
-        public virtual DbSet<Movies> Movies { get; set; }
-        public virtual DbSet<Theatres> Theatres { get; set; }
-        public virtual DbSet<BookedShows> BookedShows { get; set; }
-        public virtual DbSet<ReservedSeats> ReservedSeats { get; set; }
+        public virtual DbSet<Movie> Movies { get; set; }
+        public virtual DbSet<Theatre> Theatre { get; set; }
+        public virtual DbSet<BookedShow> BookedShows { get; set; }
+        public virtual DbSet<ReservedSeat> ReservedSeats { get; set; }
     }
 }

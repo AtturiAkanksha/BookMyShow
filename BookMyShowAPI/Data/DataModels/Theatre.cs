@@ -3,8 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.DataModels
 {
-    [Table("Theatres")]
-    public class Theatres
+    [Table("Theatre")]
+    public class Theatre
     {
         [Key]
         [Column("Id")]
@@ -15,11 +15,14 @@ namespace Data.DataModels
         public int? TheatreRows { get; set; }
         [Column("TheatreColumns")]
         public int? TheatreColumns { get; set; }
-        [Column("ListOfMovies")]
-        public List<Movies>? ListOfMovies { get; set; }
+        [Column("MovieIds")]
+        public List<int>? MovieIds { get; set; }
         [Column("MovieTimings")]
         public string? MovieTimings { get; set; }
         [Column("TicketPrice")]
         public int TicketPrice { get; set; }
+        [Column("LocationName")]
+        public string? LocationName { get; set; }
+
     }
 }

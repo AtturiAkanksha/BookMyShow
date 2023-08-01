@@ -8,27 +8,29 @@ namespace Service
 {
     public class BookingService : IBookingService
     {
-        private readonly IBaseRepository<BookedShows> _DataRepository;
-        private readonly IReservedSeatsService _reservedSeatsRepository;
+        private readonly IBaseRepository<BookedShow> _bookingRepository;
+        private readonly IBaseRepository<Data.DataModels.ReservedSeat> _seatsRepository;
         private readonly IMapper _mapper;
 
-        public BookingService(IBaseRepository<BookedShows> repository, IMapper mapper, IReservedSeatsService reservedSeatsRepository)
+        public BookingService(IBaseRepository<BookedShow> repository, IMapper mapper, IBaseRepository<Data.DataModels.ReservedSeat> seatsRepository)
         {
-            _DataRepository = repository;
+            _bookingRepository = repository;
             _mapper = mapper;
-            _reservedSeatsRepository = reservedSeatsRepository;
+            _seatsRepository = seatsRepository;
         }
+
+      
 
         public async Task<BookingRequest> BookMovie(BookingRequest bookingRequest)
         {
-            BookedShows _bookingRequest = _mapper.Map<BookedShows>(bookingRequest);
-            List<Data.DataModels.ReservedSeats> seatsList = bookingRequest.SeatNames.Select(seat => new Data.DataModels.ReservedSeats
+            BookedShow _bookingRequest = _mapper.Map<BookedShow>(bookingRequest);
+            List<Data.DataModels.ReservedSeat> SeatsList = bookingRequest.SeatNames.Select(Seats => new Data.DataModels.ReservedSeat
             {
-                SeatNumber = seat,
+                SeatNumber = Seats,
                 TheatreId = bookingRequest.TheatreId
             }).ToList();
-            _reservedSeatsRepository.Add(seatsList);
-            return _mapper.Map<BookingRequest>(_DataRepository.Add(_bookingRequest));
+            _seatsRepository.AddList(SeatsList);
+            return _mapper.Map<BookingRequest>(_bookingRepository.Add(_bookingRequest));
         }
     }
 }

@@ -1,6 +1,6 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using BookMyShowAPI;
+using BookMyShowWeb;
 using Data;
 using Repository;
 using Service;
@@ -37,7 +37,6 @@ builder.Services.AddScoped<IMoviesRepository, MoviesRepository>();
 builder.Services.AddScoped<IMoviesService, MoviesService>();
 builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<ITheatreService, TheatreService>();
-builder.Services.AddScoped<IReservedSeatsService, ReservedSeatsService>();
 
 var app = builder.Build();
 

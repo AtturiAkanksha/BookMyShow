@@ -1,4 +1,4 @@
-﻿namespace BookMyShowAPI.DTOs
+﻿namespace BookMyShowWeb.DTOs
 {
     public class BookingRequestDTO
     {
@@ -8,7 +8,7 @@
         public string MovieTimings { get; set; }
         public float TotalAmount { get; set; }
         public DateTime Date { get; set; }
-        public int TotalSeats { get; set; }
-        public List<int> SeatNames { get; set; }
+        public int SeatsCount { get; set; }
+        public List<int> SeatsNames { get; set; }
     }
 }

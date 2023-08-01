@@ -1,6 +1,6 @@
 ﻿namespace DomainModels
 {
-    public class ReservedSeats
+    public class ReservedSeat
     {
         public int Id { get; set; }
         public int SeatNumber { get; set; }

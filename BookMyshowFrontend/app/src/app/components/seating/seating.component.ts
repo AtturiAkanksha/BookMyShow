@@ -105,7 +105,7 @@ export class SeatingComponent implements OnInit {
       date: new Date(),
       seatNames: this.selectedSeats,
       totalAmount: this.receivedData.ticketPrice * this.selectedSeats.length,
-      totalSeats: this.selectedSeats.length
+      SeatsCount: this.selectedSeats.length
     }
     this.dialog.open(PopupComponent, {
       data: bookingDetails,
