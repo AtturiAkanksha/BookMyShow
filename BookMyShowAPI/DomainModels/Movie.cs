@@ -7,6 +7,6 @@
         public string Language { get; set; }
         public string Hours { get; set; }
         public string Genre { get; set; }
-        public string DateOfRelease { get; set; }
+        public DateTime DateOfRelease { get; set; }
     }
 }

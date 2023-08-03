@@ -19,18 +19,23 @@ namespace Service
             _seatsRepository = seatsRepository;
         }
 
-      
-
         public async Task<BookingRequest> BookMovie(BookingRequest bookingRequest)
         {
-            BookedShow _bookingRequest = _mapper.Map<BookedShow>(bookingRequest);
-            List<Data.DataModels.ReservedSeat> SeatsList = bookingRequest.SeatNames.Select(Seats => new Data.DataModels.ReservedSeat
+            try
             {
-                SeatNumber = Seats,
-                TheatreId = bookingRequest.TheatreId
-            }).ToList();
-            _seatsRepository.AddList(SeatsList);
-            return _mapper.Map<BookingRequest>(_bookingRepository.Add(_bookingRequest));
+                BookedShow _bookingRequest = _mapper.Map<BookedShow>(bookingRequest);
+                List<Data.DataModels.ReservedSeat> SeatsList = bookingRequest.SeatNames.Select(Seats => new Data.DataModels.ReservedSeat
+                {
+                    SeatNumber = Seats,
+                    TheatreId = bookingRequest.TheatreId
+                }).ToList();
+                _seatsRepository.AddList(SeatsList);
+                return  _mapper.Map<BookingRequest>(_bookingRepository.Add(_bookingRequest));
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }

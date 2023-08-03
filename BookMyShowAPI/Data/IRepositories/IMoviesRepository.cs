@@ -2,6 +2,6 @@
 {
     public interface IMoviesRepository
     {
-        IEnumerable<DomainModels.Movie> GetMovies(string location);
+        IEnumerable<DomainModels.Movie> GetMovies(List<int> movieIds);
     }
 }

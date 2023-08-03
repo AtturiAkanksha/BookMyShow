@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "h1cgS2xwEYQmA9RoKbLQp6Xj39C4RahUiDL44YJoocguWyg2bUi1N9tXhvxpcE3cAmaShp2AQkXTPP9pQs2IyA==",
+  "dgSpecHash": "UWG/RkWjXb8jpP3qYMLerpNrBY+tVkDa5Ir6LSXt08vgIHl3Pxz2+TBGQ7lAEWs7Tv2o+g0mIoSZI+nMv3ovPg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\Data\\Data.csproj",
+  "projectFilePath": "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\Data\\Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\akanksha.a\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\akanksha.a\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

@@ -22,7 +22,7 @@ namespace Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Data.DataModels.BookedShows", b =>
+            modelBuilder.Entity("Data.DataModels.BookedShow", b =>
                 {
                     b.Property<Guid>("BookingId")
                         .ValueGeneratedOnAdd()
@@ -32,6 +32,10 @@ namespace Data.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2")
                         .HasColumnName("Date");
+
+                    b.Property<int>("MovieId")
+                        .HasColumnType("int")
+                        .HasColumnName("MovieId");
 
                     b.Property<string>("MovieName")
                         .IsRequired()
@@ -46,7 +50,11 @@ namespace Data.Migrations
                     b.Property<string>("SeatNames")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("SeatNames");
+                        .HasColumnName("SeatsNames");
+
+                    b.Property<int>("SeatsCount")
+                        .HasColumnType("int")
+                        .HasColumnName("SeatsCount");
 
                     b.Property<int?>("TheatreId")
                         .HasColumnType("int")
@@ -61,115 +69,111 @@ namespace Data.Migrations
                         .HasColumnType("real")
                         .HasColumnName("TotalAmount");
 
-                    b.Property<int>("TotalSeats")
-                        .HasColumnType("int")
-                        .HasColumnName("TotalSeats");
-
                     b.HasKey("BookingId");
 
-                    b.ToTable("BookedShows");
+                    b.ToTable("BookedShow");
                 });
 
-            modelBuilder.Entity("Data.DataModels.Movies", b =>
+            modelBuilder.Entity("Data.DataModels.Movie", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("Id");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("DateOfRelease")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("DateOfRelease")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DateOfRelease");
 
-                    b.Property<string>("LocationNames")
+                    b.Property<string>("Genre")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Genre");
+
+                    b.Property<string>("Hours")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Hours");
+
+                    b.Property<string>("Language")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Language");
 
                     b.Property<string>("MovieName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TheatresId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("genre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("hours")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("languages")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("MovieName");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TheatresId");
-
-                    b.ToTable("Movies");
+                    b.ToTable("Movie");
                 });
 
-            modelBuilder.Entity("Data.DataModels.ReservedSeats", b =>
+            modelBuilder.Entity("Data.DataModels.ReservedSeat", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("Id");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("SeatNumber")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("SeatsNumber");
 
                     b.Property<int>("TheatreId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("TheatreId");
 
                     b.HasKey("Id");
 
-                    b.ToTable("ReservedSeats");
+                    b.ToTable("ReservedSeat");
                 });
 
-            modelBuilder.Entity("Data.DataModels.Theatres", b =>
+            modelBuilder.Entity("Data.DataModels.Theatre", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("Id");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("LocationName")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("LocationName");
+
+                    b.Property<string>("MovieIds")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("MovieIds");
+
                     b.Property<string>("MovieTimings")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("MovieTimings");
 
                     b.Property<int?>("TheatreColumns")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("TheatreColumns");
 
                     b.Property<string>("TheatreName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("TheatreName");
 
                     b.Property<int?>("TheatreRows")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("TheatreRows");
 
-                    b.Property<int>("TicketPrice")
-                        .HasColumnType("int");
+                    b.Property<float>("TicketPrice")
+                        .HasColumnType("real")
+                        .HasColumnName("TicketPrice");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Theatres");
-                });
-
-            modelBuilder.Entity("Data.DataModels.Movies", b =>
-                {
-                    b.HasOne("Data.DataModels.Theatres", null)
-                        .WithMany("ListOfMovies")
-                        .HasForeignKey("TheatresId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Data.DataModels.Theatres", b =>
-                {
-                    b.Navigation("ListOfMovies");
+                    b.ToTable("Theatre");
                 });
 #pragma warning restore 612, 618
         }

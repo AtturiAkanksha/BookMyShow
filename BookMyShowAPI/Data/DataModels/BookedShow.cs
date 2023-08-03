@@ -4,13 +4,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.DataModels
 {
+    [Table("BookedShow")]
     public class BookedShow
     {
-        [Key]
         [Column("BookingId")]
+        [Key]
         public Guid BookingId { get; set; }
         [Column("MovieName")]
         public string MovieName { get; set; }
+        [Column("MovieId")]
+        public int MovieId { get; set; }
         [Column("TheatreName")]
         public string TheatreName { get; set; }
         [Column("TheatreId")]
@@ -21,7 +24,7 @@ namespace Data.DataModels
         public float TotalAmount { get; set; }
         [Column("Date")]
         public DateTime Date { get; set; }
-        [Column("TotalSeats")]
+        [Column("SeatsCount")]
         public int SeatsCount { get; set; }
         [Column("SeatsNames")]
         public string SeatNames { get; set; }

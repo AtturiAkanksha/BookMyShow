@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using BookMyShowWeb.DTOs;
 using Data.DataModels;
 using DomainModels;
 
@@ -9,11 +8,15 @@ namespace BookMyShowWeb
     {
         public MappingProfile()
         {
-            CreateMap<BookingRequest, BookedShow>().ForMember(dest => dest.SeatNames, opt => opt.MapFrom(src => string.Join(",", src.SeatNames))).ReverseMap();
+            CreateMap<BookingRequest, BookedShow>().ForMember(dest => dest.SeatNames, opt => opt.MapFrom(src => string.Join(",", src.SeatNames)));
+
+
+
             CreateMap<BookedShow, BookingRequest>().ForMember(dest => dest.SeatNames, opt => opt.MapFrom(src => ParseStringToIntList(src.SeatNames)));
+            CreateMap<Data.DataModels.Theatre, DomainModels.Theatre>()
+                .ForMember(dest => dest.MovieIds, opt => opt.MapFrom(src => ParseStringToIntList(src.MovieIds)))
+                .ForMember(dest => dest.MovieTimings, opt => opt.MapFrom(src => StringToTimeOnly(src.MovieTimings)));
             CreateMap<DomainModels.Movie, Data.DataModels.Movie>().ReverseMap();
-            CreateMap<DomainModels.Theatre, Data.DataModels.Theatre>().ReverseMap();
-            CreateMap<BookingRequestDTO, BookingRequest>().ReverseMap();
         }
 
         private List<int> ParseStringToIntList(string numbersString)
@@ -24,5 +27,16 @@ namespace BookMyShowWeb
             }
             return numbersString.Split(',').Select(str => int.TryParse(str, out int number) ? number : 0).ToList();
         }
+
+        private List<TimeOnly> StringToTimeOnly(string timeString)
+        {
+            if (string.IsNullOrEmpty(timeString))
+            {
+                return new List<TimeOnly>();
+            }
+            return timeString.Split(',').Select(str => TimeOnly.TryParse(str, out TimeOnly time) ? time : default).ToList();
+        }
+
+
     }
 }

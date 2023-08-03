@@ -3,10 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.DataModels
 {
+    [Table("ReservedSeat")]
     public class ReservedSeat
     {
-        [Key]
         [Column("Id")]
+        [Key]
         public int Id { get; set; }
         [Column("SeatsNumber")]
         public int SeatNumber { get; set; }

@@ -2,7 +2,8 @@
 {
     public interface ITheatreService
     {
-        DomainModels.Theatre GetTheatres(int id);
+        DomainModels.Theatre GetTheatresById(int id);
         IEnumerable<Data.DataModels.ReservedSeat> Seats();
+        IEnumerable<DomainModels.Theatre> GetTheatres(int movieId);
     }
 }

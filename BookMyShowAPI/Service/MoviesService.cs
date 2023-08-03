@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Data.DataModels;
 using Data.IRepositories;
 using Service.Contracts;
 
@@ -6,20 +7,26 @@ namespace Service
 {
     public class MoviesService : IMoviesService
     {
-        private readonly IBaseRepository<Data.DataModels.Movie> _baseRepository;
+        private readonly IBaseRepository<Movie> _baseRepository;
         private readonly IMoviesRepository _moviesRepository;
+        private readonly ITheatreRepository _theatreRepository;
         private readonly IMapper _mapper;
 
-        public MoviesService(IMapper mapper, IBaseRepository<Data.DataModels.Movie> repository, IMoviesRepository moviesRepository)
+        public MoviesService(IMapper mapper, IBaseRepository<Movie> repository, ITheatreRepository theatreRepository, IMoviesRepository moviesRepository)
         {
             _mapper = mapper;
+            _theatreRepository = theatreRepository;
             _baseRepository = repository;
             _moviesRepository = moviesRepository;
         }
 
         public IEnumerable<DomainModels.Movie> GetMovies(string location)
         {
-            IEnumerable<DomainModels.Movie> movies = _moviesRepository.GetMovies(location);
+            IEnumerable<DomainModels.Theatre> theatres = _theatreRepository.GetTheatres(location);
+            List<int> movieIds = theatres
+                .SelectMany(t => t.MovieIds)
+                .ToList();
+            IEnumerable<DomainModels.Movie> movies = _moviesRepository.GetMovies(movieIds);
             return movies;
         }
 

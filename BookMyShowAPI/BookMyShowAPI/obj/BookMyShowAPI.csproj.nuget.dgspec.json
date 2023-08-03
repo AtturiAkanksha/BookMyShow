@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\BookMyShowAPI\\BookMyShowAPI.csproj": {}
+    "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\BookMyShowAPI\\BookMyShowAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\BookMyShowAPI\\BookMyShowAPI.csproj": {
+    "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\BookMyShowAPI\\BookMyShowAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\BookMyShowAPI\\BookMyShowAPI.csproj",
+        "projectUniqueName": "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\BookMyShowAPI\\BookMyShowAPI.csproj",
         "projectName": "BookMyShowAPI",
-        "projectPath": "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\BookMyShowAPI\\BookMyShowAPI.csproj",
+        "projectPath": "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\BookMyShowAPI\\BookMyShowAPI.csproj",
         "packagesPath": "C:\\Users\\akanksha.a\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\BookMyShowAPI\\obj\\",
+        "outputPath": "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\BookMyShowAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\akanksha.a\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -29,11 +29,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\Repository\\DomainModels.csproj": {
-                "projectPath": "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\Repository\\DomainModels.csproj"
+              "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\Repository\\DomainModels.csproj": {
+                "projectPath": "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\Repository\\DomainModels.csproj"
               },
-              "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\Service\\Service.csproj": {
-                "projectPath": "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\Service\\Service.csproj"
+              "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\Service\\Service.csproj": {
+                "projectPath": "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\Service\\Service.csproj"
               }
             }
           }
@@ -96,14 +96,14 @@
         }
       }
     },
-    "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\Data\\Data.csproj": {
+    "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\Data\\Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\Data\\Data.csproj",
+        "projectUniqueName": "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\Data\\Data.csproj",
         "projectName": "Data",
-        "projectPath": "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\Data\\Data.csproj",
+        "projectPath": "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\Data\\Data.csproj",
         "packagesPath": "C:\\Users\\akanksha.a\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\Data\\obj\\",
+        "outputPath": "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\akanksha.a\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -120,8 +120,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\Repository\\DomainModels.csproj": {
-                "projectPath": "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\Repository\\DomainModels.csproj"
+              "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\Repository\\DomainModels.csproj": {
+                "projectPath": "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\Repository\\DomainModels.csproj"
               }
             }
           }
@@ -179,14 +179,14 @@
         }
       }
     },
-    "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\Repository\\DomainModels.csproj": {
+    "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\Repository\\DomainModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\Repository\\DomainModels.csproj",
+        "projectUniqueName": "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\Repository\\DomainModels.csproj",
         "projectName": "DomainModels",
-        "projectPath": "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\Repository\\DomainModels.csproj",
+        "projectPath": "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\Repository\\DomainModels.csproj",
         "packagesPath": "C:\\Users\\akanksha.a\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\Repository\\obj\\",
+        "outputPath": "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\Repository\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\akanksha.a\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -234,14 +234,14 @@
         }
       }
     },
-    "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\Service\\Service.csproj": {
+    "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\Service\\Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\Service\\Service.csproj",
+        "projectUniqueName": "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\Service\\Service.csproj",
         "projectName": "Service",
-        "projectPath": "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\Service\\Service.csproj",
+        "projectPath": "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\Service\\Service.csproj",
         "packagesPath": "C:\\Users\\akanksha.a\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\Service\\obj\\",
+        "outputPath": "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\Service\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\akanksha.a\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -258,11 +258,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\Data\\Data.csproj": {
-                "projectPath": "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\Data\\Data.csproj"
+              "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\Data\\Data.csproj": {
+                "projectPath": "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\Data\\Data.csproj"
               },
-              "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\Repository\\DomainModels.csproj": {
-                "projectPath": "C:\\Users\\akanksha.a\\source\\repos\\BookMyShowAPI\\Repository\\DomainModels.csproj"
+              "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\Repository\\DomainModels.csproj": {
+                "projectPath": "C:\\Users\\akanksha.a\\Downloads\\BookMyShow\\BookMyShowAPI\\Repository\\DomainModels.csproj"
               }
             }
           }

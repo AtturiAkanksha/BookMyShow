@@ -18,8 +18,16 @@ namespace BookMyShowWeb.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            DomainModels.Theatre theatre = _theatreService.GetTheatres(id);
+            DomainModels.Theatre theatre = _theatreService.GetTheatresById(id);
             return Ok(theatre);
+        }
+
+        [HttpPost]
+        [Route("getTheatres")]
+        public IActionResult GetTheatres([FromBody] int id)
+        {
+            IEnumerable<DomainModels.Theatre> theatres = _theatreService.GetTheatres(id);
+            return Ok(theatres);
         }
 
         [HttpGet]

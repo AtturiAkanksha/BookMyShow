@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Data.DataModels;
+using DomainModels;
 using Data.IRepositories;
 using Service.Contracts;
 
@@ -7,15 +7,13 @@ namespace Service
 {
     public class TheatreService : ITheatreService
     {
-        private readonly IBaseRepository<Theatre> _baseRepository;
-        private readonly IMoviesService _moviesService;
+        private readonly IBaseRepository<Data.DataModels.Theatre> _baseRepository;
         private readonly IBaseRepository<Data.DataModels.ReservedSeat> _seatsRepository;
         private readonly IMapper _mapper;
 
-        public TheatreService(IMapper mapper, IMoviesService moviesService, IBaseRepository<Theatre> baseRepository, IBaseRepository<Data.DataModels.ReservedSeat> seatsRepository)
+        public TheatreService(IMapper mapper,IBaseRepository<Data.DataModels.Theatre> baseRepository, IBaseRepository<Data.DataModels.ReservedSeat> seatsRepository)
         {
             _mapper = mapper;
-            _moviesService = moviesService;
             _baseRepository = baseRepository;
             _seatsRepository = seatsRepository;
         }
@@ -25,10 +23,18 @@ namespace Service
             return _seatsRepository.GetAll();
         }
 
-        public DomainModels.Theatre GetTheatres(int id)
+        public IEnumerable<Theatre> GetTheatres(int movieId)
         {
-            DomainModels.Movie movie = _moviesService.GetById(id);
-            DomainModels.Theatre theatres = _mapper.Map<DomainModels.Theatre>(_baseRepository.GetById(movie.TheatresId));
+            List<Theatre> allTheatres = _mapper.Map<List<Theatre>>(_baseRepository.GetAll());
+            IEnumerable<Theatre> theatres = allTheatres
+              .Where(t => t.MovieIds.Contains(movieId))
+              .ToList();
+            return theatres;
+        }
+
+        public Theatre GetTheatresById(int id)
+        {
+            Theatre theatres = _mapper.Map<Theatre>(_baseRepository.GetById(id));
             return theatres;
         }
     }

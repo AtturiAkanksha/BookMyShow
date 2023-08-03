@@ -7,8 +7,8 @@
         public int? TheatreRows { get; set; }
         public int? TheatreColumns { get; set; }
         public List<int>? MovieIds { get; set; }
-        public string? MovieTimings { get; set; }
+        public List<TimeOnly>? MovieTimings { get; set; }
         public string? LocationName { get; set; }
-        public int TicketPrice { get; set; }
+        public float TicketPrice { get; set; }
     }
 }

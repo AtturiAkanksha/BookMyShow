@@ -3,11 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.DataModels
 {
-    [Table("Movies")]
+    [Table("Movie")]
     public class Movie
     {
-        [Key]
         [Column("Id")]
+        [Key]
         public int Id { get; set; }
         [Column("MovieName")]
         public string? MovieName { get; set; }
@@ -18,7 +18,6 @@ namespace Data.DataModels
         [Column("Genre")]
         public string Genre { get; set; }
         [Column("DateOfRelease")]
-        public DateOnly DateOfRelease { get; set; }
-        [Column("TheatresId")]
+        public DateTime DateOfRelease { get; set; }
     }
 }

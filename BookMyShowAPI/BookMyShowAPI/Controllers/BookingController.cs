@@ -1,5 +1,4 @@
-﻿using BookMyShowWeb.DTOs;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Service.Contracts;
 using AutoMapper;
 using DomainModels;
@@ -11,22 +10,19 @@ namespace BookMyShowWeb.Controllers
     public class BookingController : ControllerBase
     {
         private readonly IBookingService _bookingService;
-        private readonly IMapper _mapper;
 
-        public BookingController(IBookingService bookingService, IMapper mapper)
+        public BookingController(IBookingService bookingService)
         {
             _bookingService = bookingService;
-            _mapper = mapper;
         }
 
         [HttpPost]
         [Route("BookMovie")]
-        public async Task<IActionResult> BookMovie(BookingRequestDTO bookingRequest)
+        public IActionResult BookMovie([FromBody] BookingRequest bookingRequest)
         {
             try
             {
-                BookingRequest _bookingRequest = _mapper.Map<BookingRequest>(bookingRequest);
-                return Ok(await _bookingService.BookMovie(_bookingRequest));
+                return Ok(_bookingService.BookMovie(bookingRequest));
             }
             catch (Exception)
             {

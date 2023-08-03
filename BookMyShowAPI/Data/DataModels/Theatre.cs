@@ -6,8 +6,8 @@ namespace Data.DataModels
     [Table("Theatre")]
     public class Theatre
     {
-        [Key]
         [Column("Id")]
+        [Key]
         public int Id { get; set; }
         [Column("TheatreName")]
         public string? TheatreName { get; set; }
@@ -16,11 +16,11 @@ namespace Data.DataModels
         [Column("TheatreColumns")]
         public int? TheatreColumns { get; set; }
         [Column("MovieIds")]
-        public List<int>? MovieIds { get; set; }
+        public string MovieIds { get; set; }
         [Column("MovieTimings")]
         public string? MovieTimings { get; set; }
         [Column("TicketPrice")]
-        public int TicketPrice { get; set; }
+        public float TicketPrice { get; set; }
         [Column("LocationName")]
         public string? LocationName { get; set; }
 
