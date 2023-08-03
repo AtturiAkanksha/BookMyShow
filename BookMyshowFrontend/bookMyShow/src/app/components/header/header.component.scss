@@ -1,0 +1,58 @@
+.header-upper {
+    background-color: rgba(44, 52, 54, 255);
+    height: 50px;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    .text-small {
+        font-size: 12px;
+    }
+    .custom-ml {
+        margin-left: 52px;
+    }
+    .header-input {
+        width: 320px;
+    }
+    .right {
+        display: flex;
+        align-items: center;
+        p {
+            display: flex;
+            margin-bottom: 0;
+        }
+        #Locations {
+            background-color: rgba(44, 52, 54, 255);
+            border: none;
+            color: white;
+            width: 100px;
+        }
+        button {
+            height: 30px;
+            align-items: center;
+            display: flex;
+            width: 80px;
+            margin-right: 30px;
+        }
+    }
+}
+.header-lower {
+    background-color: rgba(27, 36, 65, 255);
+    height: 50px;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    .left {
+        display: flex;
+        p {
+            margin-bottom: 0;
+            margin-left: 30px;
+        }
+    }
+    .right {
+        display: flex;
+        p {
+            margin-bottom: 0;
+            margin-right: 30px;
+        }
+    }
+}
