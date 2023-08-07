@@ -1,0 +1,17 @@
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
+import { SeatingLayoutComponent } from './components/seating/seating-layout.component';
+import { TheatresComponent } from './components/theatres/theatres.component';
+
+const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'theatres/:movieId/:movieName', component: TheatresComponent},
+  { path: 'theatre/:id/:name', component: SeatingLayoutComponent }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }

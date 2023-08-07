@@ -1,0 +1,8 @@
+<div class="right-div mt-4">
+    <div *ngFor="let theatre of theatres; let i=index">
+        <div >
+          <h3>{{theatre.theatreName}}</h3>
+          <button class="btn btn-danger" [routerLink]="['/theatre',theatre.id,theatre.theatreName]">select seats</button> 
+        </div>
+    </div>
+  </div>

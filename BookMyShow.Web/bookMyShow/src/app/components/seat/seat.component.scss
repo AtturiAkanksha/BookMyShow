@@ -1,0 +1,23 @@
+.seat {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.reserved {
+    background-color: greenyellow;
+}
+.available {
+    background-color: #fff;
+    cursor: pointer;
+}
+.disable {
+    color: grey;
+    cursor: not-allowed;
+    pointer-events: none;
+}

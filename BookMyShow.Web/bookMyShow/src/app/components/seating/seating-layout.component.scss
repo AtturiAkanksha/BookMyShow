@@ -1,0 +1,16 @@
+h3 {
+  margin-bottom: 2px;
+}
+.seating-container {
+  display: flex;
+  flex-direction: column;
+  .seat-row {
+    display: flex;
+  }
+}
+.box {
+  height: 30px;
+  margin-right: 5px;
+  width: 90px;
+  font-size: 13px;
+}

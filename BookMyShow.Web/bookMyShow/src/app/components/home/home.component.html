@@ -1,0 +1,33 @@
+<app-header></app-header>
+<div class="div-outer">
+  <div>
+    <label for="Locations">Please select Location:</label>
+    <select name="Locations" [(ngModel)]="selectedValue" (ngModelChange)="onLocationChange()" id="Locations">
+      <option value="Mumbai, India">Mumbai, India</option>
+      <option value="Hyderabad, India">Hyderabad, India</option>
+      <option value="Los Angeles, USA">Los Angeles, USA</option>
+      <option value="California, USA">California, USA</option>
+    </select>
+  </div>
+  <p class="text-danger" *ngIf="isError">{{response.error}}</p>
+  <div class="d-flex mt-4">
+    <div>
+      <div class="grid-container">
+        <div *ngFor="let movie of movies;let i=index">
+          <div class="grid-item" [routerLink]="['/theatres',movie.id,movie.movieName]">
+            <div class="d-block">
+              <div class="image">
+                <h1 class="name">{{movie.movieName}}</h1>
+              </div>
+              <div class="footer">
+                <i class="bi bi-star-fill"></i>
+                <p class="text-small">8.8/10</p>
+                <p class="text-small">58.5k votes</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

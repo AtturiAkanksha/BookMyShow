@@ -1,0 +1,3 @@
+<div class="seat" [ngClass]="{ 'reserved': seat.isReserved, 'available': !seat.isReserved,'disable':seat.isDisabled }"
+    (click)="reserveSeat(seat.seatNumber)">{{seat.seatNumber}}
+</div>
