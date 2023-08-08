@@ -9,15 +9,14 @@ namespace BookMyShow.API
         public MappingProfile()
         {
             CreateMap<BookingRequest, BookedShow>().ForMember(dest => dest.SeatNames, opt => opt.MapFrom(src => string.Join(",", src.SeatNumbers)));
-
-
-
             CreateMap<BookedShow, BookingRequest>().ForMember(dest => dest.SeatNumbers, opt => opt.MapFrom(src => ParseStringToIntList(src.SeatNames)));
+           
             CreateMap<Data.DataModels.Theatre, DomainModels.Theatre>()
                 .ForMember(dest => dest.MovieIds, opt => opt.MapFrom(src => ParseStringToIntList(src.MovieIds)))
                 .ForMember(dest => dest.MovieTimings, opt => opt.MapFrom(src => StringToTimeOnly(src.MovieTimings)));
+
             CreateMap<DomainModels.Movie, Data.DataModels.Movie>().ReverseMap();
-            CreateMap<DomainModels.ReservedSeat, Data.DataModels.ReserveSeat>().ReverseMap();
+            CreateMap<ReservedSeat, ReserveSeat>().ReverseMap();
         }
 
         private List<int> ParseStringToIntList(string numbersString)

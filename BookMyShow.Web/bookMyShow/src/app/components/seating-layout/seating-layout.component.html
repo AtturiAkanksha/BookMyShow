@@ -9,4 +9,4 @@
     <app-seat [seat]="seat" (selectedSeat)="reserveSeat($event)" *ngFor="let seat of row"></app-seat>
   </div>
 </div>
-<button *ngIf="isBookTicketsVisible" class="btn btn-danger" (click)="bookMovie()">Book Seats</button>
+<button *ngIf="isBookTicketsVisible" class="btn btn-danger" (click)="bookMovie()">Book Movie</button>

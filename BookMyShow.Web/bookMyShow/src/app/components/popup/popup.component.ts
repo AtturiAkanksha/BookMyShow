@@ -16,7 +16,7 @@ export class PopupComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: BookingDetails, private apiService: ApiService) { }
 
   confirmBooking() {
-    this.apiService.BookMovie(this.data).subscribe(
+    this.apiService.bookMovie(this.data).subscribe(
       {
         next:
           (res) => {

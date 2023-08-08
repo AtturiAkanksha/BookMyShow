@@ -9,8 +9,8 @@ namespace BookMyShow.Data.DataModels
         [Column("Id")]
         [Key]
         public int Id { get; set; }
-        [Column("MovieName")]
-        public string MovieName { get; set; }
+        [Column("Name")]
+        public string Name { get; set; }
         [Column("Language")]
         public string Language { get; set; }
         [Column("Hours")]

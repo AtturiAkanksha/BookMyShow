@@ -10,24 +10,25 @@ import { ResponseData } from 'src/app/shared/models/response-data';
   styleUrls: ['./theatres.component.scss']
 })
 export class TheatresComponent {
-  id: number=0;
-  name: string='';
+  id: number = 0;
+  name: string = '';
   theatres: Theatre[] = [];
-  response:ResponseData={
-    data: undefined,
+  response: ResponseData = {
+    data: null,
     isSuccess: false,
     status: 200,
     error: ''
   }
 
   constructor(private route: ActivatedRoute, private apiService: ApiService) { }
+
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       const param1Value = params['movieId'];
       this.apiService.getTheatres(param1Value).subscribe({
         next:
           (res) => {
-            this.response=res
+            this.response = res
             this.theatres = this.response.data
           }
       });

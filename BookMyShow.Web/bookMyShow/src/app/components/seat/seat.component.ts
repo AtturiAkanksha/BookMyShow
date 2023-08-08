@@ -15,7 +15,7 @@ export class SeatComponent {
     isDisabled: false
   }
 
-  reserveSeat(seatNumber: number) {
+  onSeatClick(seatNumber: number) {
     this.selectedSeat.emit(seatNumber);
   }
 }

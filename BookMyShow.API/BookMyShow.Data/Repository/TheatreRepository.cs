@@ -20,7 +20,7 @@ namespace BookMyShow.Data.Repository
             try
             {
                 List<Theatre> theatres = _mapper.Map<List<Theatre>>(_theatreRepository.GetAll());
-                IEnumerable<Theatre> theatresInLocation = theatres.Where(t => t.LocationName == locationName).ToList();
+                IEnumerable<Theatre> theatresInLocation = theatres.Where(t => t.Location == locationName).ToList();
                 return theatresInLocation;
             }
             catch

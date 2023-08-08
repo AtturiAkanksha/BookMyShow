@@ -14,10 +14,10 @@
     <div>
       <div class="grid-container">
         <div *ngFor="let movie of movies;let i=index">
-          <div class="grid-item" [routerLink]="['/theatres',movie.id,movie.movieName]">
+          <div class="grid-item" [routerLink]="['/theatres',movie.id,movie.name]">
             <div class="d-block">
               <div class="image">
-                <h1 class="name">{{movie.movieName}}</h1>
+                <h1 class="name">{{movie.name}}</h1>
               </div>
               <div class="footer">
                 <i class="bi bi-star-fill"></i>

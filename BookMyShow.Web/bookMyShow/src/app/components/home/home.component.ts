@@ -12,8 +12,8 @@ import { ApiService } from 'src/app/shared/services/api.service';
 
 export class HomeComponent {
 
-  movieName: string = '';
-  movieId: number = 0;
+  name: string = '';
+  id: number = 0;
   theatres: Theatre[] = []
   selectedValue: string = '';
   movies: Movie[] = [];
@@ -22,7 +22,7 @@ export class HomeComponent {
     {
       data: null,
       isSuccess: false,
-      status: 200,
+      status: 400,
       error: ''
     }
 
@@ -36,7 +36,9 @@ export class HomeComponent {
           if (this.response.data != null) {
             this.movies = this.response.data;
           }
-          this.isError = true;
+          else {
+            this.isError = true;
+          }
         }
     });
   }

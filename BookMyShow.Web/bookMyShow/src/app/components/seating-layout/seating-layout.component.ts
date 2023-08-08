@@ -24,12 +24,12 @@ export class SeatingLayoutComponent implements OnInit {
   isBookTicketsVisible: boolean = false;
   theatreData: Theatre = {
     id: 0,
-    theatreName: '',
-    theatreRows: 0,
-    theatreColumns: 0,
+    name: '',
+    rows: 0,
+    columns: 0,
     movieIds: [],
     movieTimings: "",
-    locationName: '',
+    location: '',
     ticketPrice: 0
   }
   response: ResponseData = {
@@ -58,12 +58,14 @@ export class SeatingLayoutComponent implements OnInit {
 
   populateSeatData() {
     this.rows = [];
-    const rows = this.theatreData.theatreColumns;
-    const columns = this.theatreData.theatreRows;
+    const rows = this.theatreData.columns;
+    const columns = this.theatreData.rows;
     const request: ReservedSeat = {
       theatreId: this.theatreData.id,
       movieTime: this.selectedTime,
-      seatNumber: 0
+      seatNumber: 0,
+      isReserved: false,
+      isDisabled: false
     }
     let seatNumber = 1;
     for (let row = 1; row <= rows; row++) {
@@ -74,7 +76,7 @@ export class SeatingLayoutComponent implements OnInit {
       }
       this.rows.push(rowSeats);
     }
-    this.apiService.getReservedSeats(request).subscribe({
+    this.apiService.reservedSeats(request).subscribe({
       next: (res) => {
         this.response = res
         this.response.data.forEach((element: { theatreId: number; seatNumber: number; }) => {
@@ -120,7 +122,7 @@ export class SeatingLayoutComponent implements OnInit {
     const bookingDetails: BookingDetails = {
       movieName: JSON.parse(localStorage.getItem('movieName') ?? ""),
       movieId: JSON.parse(localStorage.getItem('movieId') ?? ""),
-      theatreName: this.theatreData.theatreName,
+      theatreName: this.theatreData.name,
       theatreId: this.theatreData.id,
       movieTimings: this.selectedTime,
       date: new Date(),

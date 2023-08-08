@@ -6,23 +6,23 @@ namespace BookMyShow.Data.DataModels
     [Table("Theatre")]
     public class Theatre
     {
-        [Column("Id")]
         [Key]
+        [Column("Id")]
         public int Id { get; set; }
-        [Column("TheatreName")]
-        public string TheatreName { get; set; }
-        [Column("TheatreRows")]
-        public int TheatreRows { get; set; }
-        [Column("TheatreColumns")]
-        public int TheatreColumns { get; set; }
+        [Column("Name")]
+        public string Name { get; set; }
+        [Column("Rows")]
+        public int Rows { get; set; }
+        [Column("Columns")]
+        public int Columns { get; set; }
         [Column("MovieIds")]
         public string MovieIds { get; set; }
         [Column("MovieTimings")]
         public string MovieTimings { get; set; }
         [Column("TicketPrice")]
         public float TicketPrice { get; set; }
-        [Column("LocationName")]
-        public string LocationName { get; set; }
+        [Column("Location")]
+        public string Location { get; set; }
 
     }
 }

@@ -1,20 +1,20 @@
 export class Theatre {
     id: number;
-    theatreName: string;
-    theatreRows: number;
-    theatreColumns: number;
+    name: string;
+    rows: number;
+    columns: number;
     movieIds: number[];
     movieTimings: string;
-    locationName: string;
+    location: string;
     ticketPrice: number;
-    constructor(id: number, theatreName: string, locationName: string, movieIds: number[], theatreRows: number, theatreColumns: number, movieTimings: string, ticketPrice: number) {
+    constructor(id: number, name: string, location: string, movieIds: number[], rows: number, columns: number, movieTimings: string, ticketPrice: number) {
         this.id = id;
-        this.theatreName = theatreName;
-        this.theatreRows = theatreRows;
-        this.theatreColumns = theatreColumns;
+        this.name = name;
+        this.rows = rows;
+        this.columns = columns;
         this.movieTimings = movieTimings;
         this.ticketPrice = ticketPrice;
         this.movieIds = movieIds;
-        this.locationName = locationName;
+        this.location = location;
     }
 }

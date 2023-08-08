@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Data.Migrations
+namespace BookMyShow.Data.Migrations
 {
     /// <inheritdoc />
     public partial class third : Migration
@@ -37,7 +37,7 @@ namespace Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    MovieName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Language = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Hours = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Genre = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -69,13 +69,13 @@ namespace Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TheatreName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TheatreRows = table.Column<int>(type: "int", nullable: false),
-                    TheatreColumns = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Rows = table.Column<int>(type: "int", nullable: false),
+                    Columns = table.Column<int>(type: "int", nullable: false),
                     MovieIds = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MovieTimings = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TicketPrice = table.Column<float>(type: "real", nullable: false),
-                    LocationName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

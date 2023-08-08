@@ -1,19 +1,17 @@
 export class Movie {
     id: number;
-    movieName: string;
-    languages: string;
+    name: string;
+    language: string;
     hours: string;
     genre: string;
     dateOfRelease: Date;
-    locationNames: string;
-    constructor(id: number, movieName: string, languages: string, hours: string, genre: string, dateOfRelease: Date, locationNames: string,
+    constructor(id: number, name: string, language: string, hours: string, genre: string, dateOfRelease: Date
     ) {
         this.id = id;
-        this.movieName = movieName;
-        this.languages = languages;
+        this.name = name;
+        this.language = language;
         this.hours = hours;
         this.genre = genre;
         this.dateOfRelease = dateOfRelease;
-        this.locationNames = locationNames;
     }
 }

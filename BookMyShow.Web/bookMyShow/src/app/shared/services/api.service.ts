@@ -12,8 +12,8 @@ import { ResponseData } from '../models/response-data';
 export class ApiService {
 
   apiUrl: string = "https://localhost:7269/api"
-  headers = new HttpHeaders({ 'Content-Type': 'application/json' });
   baseServerUrl = "";
+
   constructor(private http: HttpClient) { }
 
   public getMovies(locationName: string): Observable<ResponseData> {
@@ -28,16 +28,16 @@ export class ApiService {
 
   public getTheatreById(id: number): Observable<ResponseData> {
     this.baseServerUrl = `${this.apiUrl}/Theatre/${id}`;
-    return this.http.get<ResponseData>(this.baseServerUrl, { headers: this.headers })
+    return this.http.get<ResponseData>(this.baseServerUrl)
   }
 
-  public getReservedSeats(request: ReservedSeat): Observable<ResponseData> {
+  public reservedSeats(request: ReservedSeat): Observable<ResponseData> {
     this.baseServerUrl = `${this.apiUrl}/Theatre/getReservedSeatsData`;
-    return this.http.post<ResponseData>(this.baseServerUrl, request, { headers: this.headers });
+    return this.http.post<ResponseData>(this.baseServerUrl, request);
   }
 
-  public BookMovie(data: BookingDetails): Observable<ResponseData> {
+  public bookMovie(data: BookingDetails): Observable<ResponseData> {
     this.baseServerUrl = `${this.apiUrl}/Booking/BookMovie`;
-    return this.http.post<ResponseData>(this.baseServerUrl, data, { headers: this.headers })
+    return this.http.post<ResponseData>(this.baseServerUrl, data)
   }
 }

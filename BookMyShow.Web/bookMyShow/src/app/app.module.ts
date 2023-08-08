@@ -7,7 +7,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
-import { SeatingLayoutComponent } from './components/seating/seating-layout.component';
+import { SeatingLayoutComponent } from './components/seating-layout/seating-layout.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { PopupComponent } from './components/popup/popup.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
