@@ -2,10 +2,12 @@
     width: 30px;
     height: 30px;
     border: 1px solid #ccc;
+    border-radius: 3px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 2px;
+    font-size: smaller;
     cursor: pointer;
     font-weight: bold;
 }
@@ -17,7 +19,8 @@
     cursor: pointer;
 }
 .disable {
-    color: grey;
+    color: white;
+    background-color: rgb(221, 220, 220);
     cursor: not-allowed;
     pointer-events: none;
 }

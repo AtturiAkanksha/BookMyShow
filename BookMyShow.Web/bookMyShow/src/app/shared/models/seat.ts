@@ -1,8 +1,8 @@
 export class Seat {
-    seatNumber: number;
+    seatNumber: string;
     isReserved: boolean;
     isDisabled: boolean;
-    constructor(seatNumber: number,
+    constructor(seatNumber: string,
         isReserved: boolean, isDisabled: boolean) {
         this.seatNumber = seatNumber;
         this.isReserved = isReserved;

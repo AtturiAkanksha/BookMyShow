@@ -3,36 +3,37 @@ using BookMyShow.Data.DataModels;
 using BookMyShow.Data.IRepositories;
 using BookMyShow.DomainModels;
 using BookMyShow.Services.Contracts;
+using Repository;
 
 namespace BookMyShow.Services
 {
     public class BookingService : IBookingService
     {
-        private readonly IBaseRepository<BookedShow> _bookingRepository;
-        private readonly IBaseRepository<Data.DataModels.ReserveSeat> _seatsRepository;
+        private readonly IBaseRepository<Ticket> _baseRepository;
+        private readonly IBaseRepository<ReserveSeat> _baseSeatsRepository;
         private readonly IMapper _mapper;
 
-        public BookingService(IBaseRepository<BookedShow> repository, IMapper mapper, IBaseRepository<Data.DataModels.ReserveSeat> seatsRepository)
+        public BookingService(IBaseRepository<Ticket> baseRepository, IMapper mapper, IBaseRepository<ReserveSeat> baseSeatsRepository)
         {
-            _bookingRepository = repository;
+            _baseRepository = baseRepository;
             _mapper = mapper;
-            _seatsRepository = seatsRepository;
+            _baseSeatsRepository = baseSeatsRepository;
         }
 
         public BookingRequest BookMovie(BookingRequest bookingRequest)
         {
             try
             {
-                BookedShow _bookingRequest = _mapper.Map<BookedShow>(bookingRequest);
-                List<Data.DataModels.ReserveSeat> SeatsList = bookingRequest.SeatNumbers.Select(Seats => new Data.DataModels.ReserveSeat
+                Ticket ticket = _mapper.Map<Ticket>(bookingRequest);
+                List<ReserveSeat> SeatsList = bookingRequest.SeatNumbers.Select(Seats => new ReserveSeat
                 {
                     SeatNumber = Seats,
                     TheatreId = bookingRequest.TheatreId,
-                    MovieTime = bookingRequest.MovieTimings
+                    MovieId = bookingRequest.MovieId,
+                    ShowTime = bookingRequest.ShowTime
                 }).ToList();
-                _seatsRepository.AddList(SeatsList);
-                //unnecassary mapping
-                return  _mapper.Map<BookingRequest>(_bookingRepository.Add(_bookingRequest));
+                _baseSeatsRepository.AddList(SeatsList);
+                return  _mapper.Map<BookingRequest>(_baseRepository.Add(ticket));
             }
             catch
             {

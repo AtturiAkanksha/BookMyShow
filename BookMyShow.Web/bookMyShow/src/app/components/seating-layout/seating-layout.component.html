@@ -1,7 +1,15 @@
 <h3 class="mt-2">Please select movie timings</h3>
 <div class="mb-4  d-flex">
-  <div class="box btn btn-danger" (click)="onSelectTime(time)" *ngFor="let time of theatreData.movieTimings">
+  <div class="box btn btn-danger" (click)="onSelectTime(time)" *ngFor="let time of theatreData.showTime">
     {{time}}
+  </div>
+</div>
+<div *ngIf="isNoOfSeatsVisible">
+  <h3 class="mt-2">how many seats?</h3>
+  <div class="d-flex mb-4">
+    <div *ngFor="let number of noOfSeats">
+      <div class="circle-div" (click)="onNoOfSeatsClick(number)">{{number}}</div>
+    </div>
   </div>
 </div>
 <div class="seating-container">

@@ -17,7 +17,7 @@ namespace BookMyShow.API.Controllers
         }
 
         [HttpPost]
-        [Route("BookMovie")]
+        [Route("bookMovie")]
         public ApiResponse<BookingRequest> BookMovie([FromBody] BookingRequest bookingRequest)
         {
             try

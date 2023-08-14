@@ -7,60 +7,30 @@ namespace BookMyShow.Services
 {
     public class TheatreService : ITheatreService
     {
-        private readonly IBaseRepository<Data.DataModels.Theatre> _baseRepository;
-        private readonly IBaseRepository<Data.DataModels.ReserveSeat> _seatsRepository;
-        private readonly IMapper _mapper;
+        private readonly ITheatreRepository _theatreRepository;
 
-        public TheatreService(IMapper mapper, IBaseRepository<Data.DataModels.Theatre> baseRepository, IBaseRepository<Data.DataModels.ReserveSeat> seatsRepository)
+        public TheatreService(ITheatreRepository theatreRepository)
         {
-            _mapper = mapper;
-            _baseRepository = baseRepository;
-            _seatsRepository = seatsRepository;
+            _theatreRepository = theatreRepository;
         }
 
         public IEnumerable<ReservedSeat> GetReservedSeats(ReservedSeat reservedSeatRequest)
         {
-            List<ReservedSeat> allReservedSeats = _mapper.Map<List<ReservedSeat>>(_seatsRepository.GetAll());
-            IEnumerable<ReservedSeat> reservedSeats = allReservedSeats.Where(seats => seats.TheatreId == reservedSeatRequest.TheatreId
-            && seats.MovieTime == reservedSeatRequest.MovieTime).ToList();
-            return reservedSeats;
+            return _theatreRepository.GetReservedSeats(reservedSeatRequest);
         }
 
-        public IEnumerable<Theatre> GetTheatres(int movieId)
+        public IEnumerable<Theatre> GetTheatresByMovieId(int movieId)
         {
-            try
-            {
-                List<Theatre> allTheatres = _mapper.Map<List<Theatre>>(_baseRepository.GetAll());
-                IEnumerable<Theatre> theatres = allTheatres
-                  .Where(t => t.MovieIds.Contains(movieId))
-                  .ToList();
-                if (theatres != null)
-                {
-                    return theatres;
-                }
-                throw new Exception("No theatres exist with given movieId");
-            }
-            catch
-            {
-                throw;
-            }
+            return _theatreRepository.GetTheatresByMovieId(movieId);
+        }
+        public IEnumerable<Theatre> GetTheatresByLocation(string location)
+        {
+            return _theatreRepository.GetTheatresByLocation(location);
         }
 
         public Theatre GetTheatreById(int id)
         {
-            try
-            {
-                Theatre theatres = _mapper.Map<Theatre>(_baseRepository.GetById(id));
-                if (theatres != null)
-                {
-                    return theatres;
-                }
-                throw new Exception("Theatre doesn't exist with the given id");
-            }
-            catch
-            {
-                throw;
-            }
+            return _theatreRepository.GetTheatreById(id);
         }
     }
 }

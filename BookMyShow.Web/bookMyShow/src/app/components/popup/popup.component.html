@@ -3,10 +3,9 @@
   <p>Movie Name:{{bookingDetails.movieName}}</p>
   <p>date:{{bookingDetails.date}}</p>
   <p>Theatre: {{ bookingDetails.theatreName }}</p>
-  <p>No of seats:{{bookingDetails.seatsCount}}</p>
   <p>seats booked:{{bookingDetails.seatNumbers}}</p>
   <p>price:{{bookingDetails.totalAmount}}</p>
-  <p>timings:{{bookingDetails.movieTimings}}</p>
+  <p>timings:{{bookingDetails.showTime}}</p>
 </div>
 <div mat-dialog-actions>
   <button mat-raised-button color="primary" (click)="confirmBooking()">Confirm Booking</button>

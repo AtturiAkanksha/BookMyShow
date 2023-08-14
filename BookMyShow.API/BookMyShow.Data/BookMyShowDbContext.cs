@@ -9,9 +9,7 @@ namespace BookMyShow.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                //connection string should be read from appsettings
-                optionsBuilder.UseSqlServer("Data Source=TL599\\SQLEXPRESS;Initial Catalog=BookMyShowDb;Integrated " +
-                    "Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                optionsBuilder.UseSqlServer("BookMyShowConnectionString");
             }
         }
 
@@ -21,8 +19,8 @@ namespace BookMyShow.Data
         }
 
         public virtual DbSet<Movie> Movies { get; set; }
-        public virtual DbSet<Theatre> Theatre { get; set; }
-        public virtual DbSet<BookedShow> BookedShows { get; set; }
+        public virtual DbSet<Theatre> Theatres { get; set; }
+        public virtual DbSet<Ticket> BookedShows { get; set; }
         public virtual DbSet<ReserveSeat> ReservedSeats { get; set; }
     }
 }

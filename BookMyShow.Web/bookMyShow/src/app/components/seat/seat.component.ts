@@ -8,14 +8,14 @@ import { Seat } from 'src/app/shared/models/seat';
 })
 export class SeatComponent {
 
-  @Output() selectedSeat = new EventEmitter<number>();
+  @Output() selectedSeat = new EventEmitter<string>();
   @Input() seat: Seat = {
-    seatNumber: 0,
+    seatNumber: '',
     isReserved: false,
     isDisabled: false
   }
 
-  onSeatClick(seatNumber: number) {
+  onSeatClick(seatNumber: string) {
     this.selectedSeat.emit(seatNumber);
   }
 }

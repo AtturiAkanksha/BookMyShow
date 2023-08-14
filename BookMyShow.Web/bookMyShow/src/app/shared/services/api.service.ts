@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BookingDetails } from '../models/booking-details';
@@ -32,12 +32,12 @@ export class ApiService {
   }
 
   public reservedSeats(request: ReservedSeat): Observable<ResponseData> {
-    this.baseServerUrl = `${this.apiUrl}/Theatre/getReservedSeatsData`;
+    this.baseServerUrl = `${this.apiUrl}/Theatre/reservedSeatsData`;
     return this.http.post<ResponseData>(this.baseServerUrl, request);
   }
 
   public bookMovie(data: BookingDetails): Observable<ResponseData> {
-    this.baseServerUrl = `${this.apiUrl}/Booking/BookMovie`;
+    this.baseServerUrl = `${this.apiUrl}/Booking/bookMovie`;
     return this.http.post<ResponseData>(this.baseServerUrl, data)
   }
 }

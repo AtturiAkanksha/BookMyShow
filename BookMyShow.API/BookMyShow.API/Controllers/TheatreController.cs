@@ -17,7 +17,7 @@ namespace BookMyShowWeb.Controllers
         }
 
         [HttpPost]
-        [Route("getReservedSeatsData")]
+        [Route("reservedSeatsData")]
         public ApiResponse<IEnumerable<ReservedSeat>> GetReservedSeats([FromBody] ReservedSeat reserveSeatsRequest)
         {
             try
@@ -50,7 +50,7 @@ namespace BookMyShowWeb.Controllers
         {
             try
             {
-                IEnumerable<Theatre> theatres = _theatreService.GetTheatres(id);
+                IEnumerable<Theatre> theatres = _theatreService.GetTheatresByMovieId(id);
                 return ApiResponse<IEnumerable<Theatre>>.Success(theatres);
             }
             catch (Exception ex)

@@ -32,5 +32,4 @@ namespace BookMyShow.API.ResponseDTOs
             return apiResponse;
         }
     }
-    
 }

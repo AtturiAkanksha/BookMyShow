@@ -7,23 +7,20 @@ namespace BookMyShow.Data.Repository
     public class MoviesRepository : IMoviesRepository
     {
         private readonly IMapper _mapper;
-        //rename to baserepository
-        private readonly IBaseRepository<DataModels.Movie> _moviesRepository;
+        private readonly BookMyShowDbContext _dbContext;
 
-        public MoviesRepository(IMapper mapper, IBaseRepository<DataModels.Movie> moviesRepository)
+        public MoviesRepository(IMapper mapper, BookMyShowDbContext dbContext)
         {
             _mapper = mapper;
-            _moviesRepository = moviesRepository;
+            _dbContext = dbContext;
         }
 
         public IEnumerable<Movie> GetMovies(List<int> movieIds)
         {
             try
             {
-                // you should not fetch all, you should fetch only required rows
-                IEnumerable<Movie> allMovies = _mapper.Map<IEnumerable<Movie>>(_moviesRepository.GetAll());
-                IEnumerable<Movie> _movies = allMovies.Where(m => movieIds.Contains(m.Id)).ToList();
-                return _movies;
+                IEnumerable<DataModels.Movie> _movies = _dbContext.Movies.Where(m => movieIds.Contains(m.Id));
+                return _mapper.Map<IEnumerable<Movie>>(_movies);
             }
             catch
             {

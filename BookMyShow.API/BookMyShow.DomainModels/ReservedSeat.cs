@@ -2,8 +2,9 @@
 {
     public class ReservedSeat
     {
-        public int SeatNumber { get; set; }
+        public string SeatNumber { get; set; }
         public int TheatreId { get; set; }
-        public string MovieTime { get; set; }
+        public int MovieId { get; set; }
+        public string ShowTime { get; set; }
     }
 }

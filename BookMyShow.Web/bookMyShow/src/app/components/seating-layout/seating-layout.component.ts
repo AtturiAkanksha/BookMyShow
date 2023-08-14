@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Seat } from 'src/app/shared/models/seat';
 import { PopupComponent } from '../popup/popup.component';
@@ -18,17 +18,22 @@ import { ResponseData } from 'src/app/shared/models/response-data';
 export class SeatingLayoutComponent implements OnInit {
   timings: string[] = []
   rows: Seat[][] = [];
-  selectedSeats: number[] = [];
+  selectedSeats: string[] = [];
   selectedTime: string = '';
+  noOfSeats=[1,2,3,4,5];
+  selectedNoOfSeats:number=0;
   reservedSeats: ReservedSeat[] = []
   isBookTicketsVisible: boolean = false;
+  movieId: number = 0;
+  movieName: string = '';
+  isNoOfSeatsVisible:boolean=false;
   theatreData: Theatre = {
     id: 0,
     name: '',
     rows: 0,
     columns: 0,
     movieIds: [],
-    movieTimings: "",
+    showTime: "",
     location: '',
     ticketPrice: 0
   }
@@ -46,6 +51,9 @@ export class SeatingLayoutComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       const theatreId = params['id'];
+      this.movieId = params['movieId'];
+      this.movieName = params['movieName'];
+
       this.apiService.getTheatreById(theatreId).subscribe({
         next:
           (res) => {
@@ -58,28 +66,29 @@ export class SeatingLayoutComponent implements OnInit {
 
   populateSeatData() {
     this.rows = [];
-    const rows = this.theatreData.columns;
-    const columns = this.theatreData.rows;
+    const rows = this.theatreData.rows;
+    const columns = this.theatreData.columns;
     const request: ReservedSeat = {
       theatreId: this.theatreData.id,
-      movieTime: this.selectedTime,
-      seatNumber: 0,
+      showTime: this.selectedTime,
+      seatNumber: '',
       isReserved: false,
-      isDisabled: false
+      isDisabled: false,
+      movieId: this.movieId
     }
-    let seatNumber = 1;
     for (let row = 1; row <= rows; row++) {
       const rowSeats: Seat[] = [];
+      const rowName = String.fromCharCode(64 + row);
       for (let col = 1; col <= columns; col++) {
+        const seatNumber = rowName + col;
         rowSeats.push({ seatNumber, isReserved: false, isDisabled: false });
-        seatNumber++;
       }
       this.rows.push(rowSeats);
     }
     this.apiService.reservedSeats(request).subscribe({
       next: (res) => {
         this.response = res
-        this.response.data.forEach((element: { theatreId: number; seatNumber: number; }) => {
+        this.response.data.forEach((element: { theatreId: number; seatNumber: string; }) => {
           if (element.theatreId == this.theatreData.id) {
             this.rows.flat().find(seat => {
               if (seat.seatNumber === element.seatNumber) {
@@ -92,22 +101,33 @@ export class SeatingLayoutComponent implements OnInit {
     })
   }
 
-  reserveSeat(seatNumber: number): void {
-    const seatToReserve = this.rows.flat().find(seat => seat.seatNumber === seatNumber);
-    const index = this.selectedSeats.indexOf(seatNumber);
-    if (seatToReserve !== undefined) {
-      if (!seatToReserve) {
+  reserveSeat(startingSeatNumber: string): void {
+    const rowIndex = this.rows.findIndex(row => row.some(seat => seat.seatNumber === startingSeatNumber));
+
+    if (rowIndex === -1) {
+      console.error('Row not found.');
+      return;
+    }
+
+    const startingSeatIndex = this.rows[rowIndex].findIndex(seat => seat.seatNumber === startingSeatNumber);
+
+    for (let i = startingSeatIndex; i > startingSeatIndex - this.selectedNoOfSeats; i--) {
+      const currentSeat = this.rows[rowIndex][i];
+
+      if (!currentSeat) {
         console.error('Seat not found.');
-        return;
+        continue;
       }
-      seatToReserve.isReserved = !seatToReserve.isReserved;
-      if (index === -1) {
-        this.selectedSeats.push(seatNumber);
-      } else {
-        if (seatToReserve.isReserved) {
-          seatToReserve.isReserved = !seatToReserve.isReserved;
+
+      const seatIndex = this.selectedSeats.indexOf(currentSeat.seatNumber);
+      if (seatIndex === -1) {
+        if(this.selectedSeats.length<=this.selectedNoOfSeats){
+        this.selectedSeats.push(currentSeat.seatNumber);
         }
-        this.selectedSeats.splice(index, 1);
+        else{
+          this.selectedSeats.shift();
+          this.selectedSeats.push(currentSeat.seatNumber);
+        }
       }
     }
   }
@@ -116,22 +136,46 @@ export class SeatingLayoutComponent implements OnInit {
     this.selectedTime = time.toString();
     this.populateSeatData();
     this.isBookTicketsVisible = true;
+    this.isNoOfSeatsVisible = true;
+  }
+
+  onNoOfSeatsClick(number:number){
+    this.selectedNoOfSeats = number;
+    console.log(this.selectedNoOfSeats);
   }
 
   bookMovie() {
     const bookingDetails: BookingDetails = {
-      movieName: JSON.parse(localStorage.getItem('movieName') ?? ""),
-      movieId: JSON.parse(localStorage.getItem('movieId') ?? ""),
+      movieName: this.movieName,
+      movieId: this.movieId,
       theatreName: this.theatreData.name,
       theatreId: this.theatreData.id,
-      movieTimings: this.selectedTime,
+      showTime: this.selectedTime,
       date: new Date(),
       seatNumbers: this.selectedSeats,
       totalAmount: this.theatreData.ticketPrice * this.selectedSeats.length,
-      seatsCount: this.selectedSeats.length
     }
-    this.dialog.open(PopupComponent, {
-      data: bookingDetails,
-    });
+    if (bookingDetails.seatNumbers.length != 0) {
+      const popUp = this.dialog.open(PopupComponent, {
+        data: bookingDetails
+      });
+      popUp.afterClosed().subscribe(
+        result => {
+          if (result) {
+            this.selectedSeats = [];
+            this.populateSeatData();
+          }
+        })
+      popUp.backdropClick().subscribe(
+        result => {
+          if (result) {
+            this.selectedSeats = [];
+            this.populateSeatData();
+          }
+        })
+    }
+    else {
+      alert('Please select seats for booking')
+    }
   }
 }

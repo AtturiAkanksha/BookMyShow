@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookMyShow.Data.Migrations
 {
     [DbContext(typeof(BookMyShowDbContext))]
-    [Migration("20230808055831_third")]
+    [Migration("20230814121900_third")]
     partial class third
     {
         /// <inheritdoc />
@@ -24,58 +24,6 @@ namespace BookMyShow.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("BookMyShow.Data.DataModels.BookedShow", b =>
-                {
-                    b.Property<Guid>("BookingId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("BookingId");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("Date");
-
-                    b.Property<int>("MovieId")
-                        .HasColumnType("int")
-                        .HasColumnName("MovieId");
-
-                    b.Property<string>("MovieName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("MovieName");
-
-                    b.Property<string>("MovieTimings")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("MovieTimings");
-
-                    b.Property<string>("SeatNames")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("SeatsNames");
-
-                    b.Property<int>("SeatsCount")
-                        .HasColumnType("int")
-                        .HasColumnName("SeatsCount");
-
-                    b.Property<int>("TheatreId")
-                        .HasColumnType("int")
-                        .HasColumnName("TheatreId");
-
-                    b.Property<string>("TheatreName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("TheatreName");
-
-                    b.Property<float>("TotalAmount")
-                        .HasColumnType("real")
-                        .HasColumnName("TotalAmount");
-
-                    b.HasKey("BookingId");
-
-                    b.ToTable("BookedShow");
-                });
 
             modelBuilder.Entity("BookMyShow.Data.DataModels.Movie", b =>
                 {
@@ -90,15 +38,15 @@ namespace BookMyShow.Data.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("DateOfRelease");
 
+                    b.Property<string>("Duration")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Duration");
+
                     b.Property<string>("Genre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Genre");
-
-                    b.Property<string>("Hours")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Hours");
 
                     b.Property<string>("Language")
                         .IsRequired()
@@ -124,14 +72,19 @@ namespace BookMyShow.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("MovieTime")
+                    b.Property<int>("MovieId")
+                        .HasColumnType("int")
+                        .HasColumnName("MovieId");
+
+                    b.Property<string>("SeatNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("MovieTime");
-
-                    b.Property<int>("SeatNumber")
-                        .HasColumnType("int")
                         .HasColumnName("SeatsNumber");
+
+                    b.Property<string>("ShowTime")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ShowTime");
 
                     b.Property<int>("TheatreId")
                         .HasColumnType("int")
@@ -139,7 +92,7 @@ namespace BookMyShow.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ReservedSeat");
+                    b.ToTable("ReserveSeat");
                 });
 
             modelBuilder.Entity("BookMyShow.Data.DataModels.Theatre", b =>
@@ -165,11 +118,6 @@ namespace BookMyShow.Data.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("MovieIds");
 
-                    b.Property<string>("MovieTimings")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("MovieTimings");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
@@ -179,6 +127,11 @@ namespace BookMyShow.Data.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Rows");
 
+                    b.Property<string>("ShowTime")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ShowTime");
+
                     b.Property<float>("TicketPrice")
                         .HasColumnType("real")
                         .HasColumnName("TicketPrice");
@@ -186,6 +139,54 @@ namespace BookMyShow.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Theatre");
+                });
+
+            modelBuilder.Entity("BookMyShow.Data.DataModels.Ticket", b =>
+                {
+                    b.Property<Guid>("BookingId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("BookingId");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("Date");
+
+                    b.Property<int>("MovieId")
+                        .HasColumnType("int")
+                        .HasColumnName("MovieId");
+
+                    b.Property<string>("MovieName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("MovieName");
+
+                    b.Property<string>("SeatNumbers")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("SeatNumbers");
+
+                    b.Property<string>("ShowTime")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ShowTime");
+
+                    b.Property<int>("TheatreId")
+                        .HasColumnType("int")
+                        .HasColumnName("TheatreId");
+
+                    b.Property<string>("TheatreName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("TheatreName");
+
+                    b.Property<float>("TotalAmount")
+                        .HasColumnType("real")
+                        .HasColumnName("TotalAmount");
+
+                    b.HasKey("BookingId");
+
+                    b.ToTable("Ticket");
                 });
 #pragma warning restore 612, 618
         }

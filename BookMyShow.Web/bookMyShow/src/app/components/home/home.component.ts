@@ -37,6 +37,7 @@ export class HomeComponent {
             this.movies = this.response.data;
           }
           else {
+            this.movies=[];
             this.isError = true;
           }
         }

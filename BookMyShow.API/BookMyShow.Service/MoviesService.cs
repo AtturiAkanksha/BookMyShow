@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using BookMyShow.Data.DataModels;
 using BookMyShow.Data.IRepositories;
 using BookMyShow.Services.Contracts;
 
@@ -7,19 +6,12 @@ namespace BookMyShow.Services
 {
     public class MoviesService : IMoviesService
     {
-        // remove unecessary injections, base repository should be injected only in repositories not in services
-        private readonly IBaseRepository<Movie> _baseRepository;
         private readonly IMoviesRepository _moviesRepository;
-        //you should call theatre service here not theater repository.
-        private readonly ITheatreRepository _theatreRepository;
-        //if you are not using please don't inject
-        private readonly IMapper _mapper;
+        private readonly ITheatreService _theatreService;
 
-        public MoviesService(IMapper mapper, IBaseRepository<Movie> repository, ITheatreRepository theatreRepository, IMoviesRepository moviesRepository)
+        public MoviesService(ITheatreRepository theatreRepository, IMoviesRepository moviesRepository, ITheatreService theatreService)
         {
-            _mapper = mapper;
-            _theatreRepository = theatreRepository;
-            _baseRepository = repository;
+            _theatreService = theatreService;
             _moviesRepository = moviesRepository;
         }
 
@@ -27,7 +19,7 @@ namespace BookMyShow.Services
         {
             try
             {
-                IEnumerable<DomainModels.Theatre> theatres = _theatreRepository.GetTheatres(location);
+                IEnumerable<DomainModels.Theatre> theatres = _theatreService.GetTheatresByLocation(location);
                 if (theatres.Any())
                 {
                     List<int> movieIds = theatres

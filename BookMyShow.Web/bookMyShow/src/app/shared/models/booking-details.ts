@@ -3,21 +3,19 @@ export class BookingDetails {
     movieName: string;
     theatreName: string;
     theatreId: number;
-    movieTimings: string;
+    showTime: string;
     totalAmount: number;
     date: Date;
-    seatsCount: number;
-    seatNumbers: number[];
+    seatNumbers: string[];
     constructor(movieName: string, movieId: number, theatreName: string,
-        movieTimings: string, totalAmount: number, theatreId: number, date: Date,
-        seatsCount: number, seatNumbers: number[]) {
+        showTime: string, totalAmount: number, theatreId: number, date: Date,
+        seatNumbers: string[]) {
         this.theatreName = theatreName;
-        this.movieTimings = movieTimings;
+        this.showTime = showTime;
         this.movieName = movieName;
         this.theatreId = theatreId;
         this.totalAmount = totalAmount;
         this.date = date;
-        this.seatsCount = seatsCount;
         this.seatNumbers = seatNumbers;
         this.movieId = movieId;
     }

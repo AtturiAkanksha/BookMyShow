@@ -12,6 +12,8 @@ import { ResponseData } from 'src/app/shared/models/response-data';
 export class TheatresComponent {
   id: number = 0;
   name: string = '';
+  movieId:number=0;
+  movieName:string='';
   theatres: Theatre[] = [];
   response: ResponseData = {
     data: null,
@@ -24,8 +26,9 @@ export class TheatresComponent {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      const param1Value = params['movieId'];
-      this.apiService.getTheatres(param1Value).subscribe({
+      this.movieId = params['movieId'];
+      this.movieName =params['movieName'];
+      this.apiService.getTheatres(this.movieId).subscribe({
         next:
           (res) => {
             this.response = res
