@@ -19,6 +19,7 @@ namespace BookMyShow.Data.Repository
         {
             try
             {
+                //you should directly fetch based on locations, you should not do fetching all and filterting here
                 List<Theatre> theatres = _mapper.Map<List<Theatre>>(_theatreRepository.GetAll());
                 IEnumerable<Theatre> theatresInLocation = theatres.Where(t => t.Location == locationName).ToList();
                 return theatresInLocation;

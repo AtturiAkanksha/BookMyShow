@@ -31,6 +31,7 @@ namespace BookMyShow.Services
                     MovieTime = bookingRequest.MovieTimings
                 }).ToList();
                 _seatsRepository.AddList(SeatsList);
+                //unnecassary mapping
                 return  _mapper.Map<BookingRequest>(_bookingRepository.Add(_bookingRequest));
             }
             catch

@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookMyShow.Data.DataModels
 {
+    //movie id should be there, from that you will get movie time
     [Table("ReservedSeat")]
     public class ReserveSeat
     {

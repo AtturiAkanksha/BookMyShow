@@ -13,6 +13,7 @@ namespace BookMyShow.Data.DataModels
         public string Name { get; set; }
         [Column("Language")]
         public string Language { get; set; }
+        //not a proper name
         [Column("Hours")]
         public string Hours { get; set; }
         [Column("Genre")]

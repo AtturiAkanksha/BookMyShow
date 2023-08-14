@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookMyShow.Data.DataModels
 {
+    //you should be able to have your dat
     [Table("Theatre")]
     public class Theatre
     {
@@ -15,7 +16,7 @@ namespace BookMyShow.Data.DataModels
         public int Rows { get; set; }
         [Column("Columns")]
         public int Columns { get; set; }
-        [Column("MovieIds")]
+        [Column("MovieIds")]             
         public string MovieIds { get; set; }
         [Column("MovieTimings")]
         public string MovieTimings { get; set; }

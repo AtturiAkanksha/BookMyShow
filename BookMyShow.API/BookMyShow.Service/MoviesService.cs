@@ -7,9 +7,12 @@ namespace BookMyShow.Services
 {
     public class MoviesService : IMoviesService
     {
+        // remove unecessary injections, base repository should be injected only in repositories not in services
         private readonly IBaseRepository<Movie> _baseRepository;
         private readonly IMoviesRepository _moviesRepository;
+        //you should call theatre service here not theater repository.
         private readonly ITheatreRepository _theatreRepository;
+        //if you are not using please don't inject
         private readonly IMapper _mapper;
 
         public MoviesService(IMapper mapper, IBaseRepository<Movie> repository, ITheatreRepository theatreRepository, IMoviesRepository moviesRepository)
@@ -37,7 +40,7 @@ namespace BookMyShow.Services
             }
             catch
             {
-                throw ;
+                throw;
             }
         }
     }
