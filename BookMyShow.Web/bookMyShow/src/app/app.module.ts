@@ -1,4 +1,4 @@
-import { NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +15,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { TheatresComponent } from './components/theatres/theatres.component';
 import { SeatComponent } from './components/seat/seat.component';
 import { ToastrModule } from 'ngx-toastr';
+import { LoginComponent } from './components/login/login.component';
+import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
+import { GoogleLoginProvider} from '@abacritt/angularx-social-login';
+import { CommonModule } from '@angular/common'; 
 
 @NgModule({
   declarations: [
@@ -24,7 +28,8 @@ import { ToastrModule } from 'ngx-toastr';
     SeatingLayoutComponent,
     PopupComponent,
     TheatresComponent,
-    SeatComponent
+    SeatComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,9 +40,29 @@ import { ToastrModule } from 'ngx-toastr';
     NoopAnimationsModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    ToastrModule.forRoot() 
+    SocialLoginModule,
+    CommonModule,
+    ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              "509587443606-6m6db9couh8d144u1vk11fuhfan3s22o.apps.googleusercontent.com"
+            )
+          },
+        ],
+        onError: (err) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
