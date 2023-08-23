@@ -1,6 +1,7 @@
 import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/shared/services/api.service';
 
 @Component({
   selector: 'app-login',
@@ -9,15 +10,19 @@ import { Router } from '@angular/router';
 })
 
 export class LoginComponent {
-  user:any;
-  loggedIn:any;
-  constructor(private socialAuthService: SocialAuthService, private router:Router) { }
+  accessToken:string='';
+
+  constructor(private socialAuthService: SocialAuthService, private router:Router,  private apiService:ApiService) { }
 
   ngOnInit() {
     this.socialAuthService.authState.subscribe((user) => {
-      this.user = user;
-      this.loggedIn = (user != null);
-      this.router.navigate(['/home'])
+      if (user !== null) {
+        this.apiService.getAccessToken(user.idToken).subscribe({
+          next:(res)=> console.log(res.data)
+        })
+        this.router.navigate(['/home'])
+      }
     });
   }
+
 }

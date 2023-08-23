@@ -16,17 +16,18 @@ import { ResponseData } from 'src/app/shared/models/response-data';
 })
 
 export class SeatingLayoutComponent implements OnInit {
+  isBookTicketsVisible: boolean = false;
+  isNoOfSeatsVisible: boolean = false;
+  isSeatingVisible: boolean = false;
+  selectedNoOfSeats: number = 0;
+  movieId: number = 0;
+  movieName: string = '';
+  selectedTime: string = '';
+  noOfSeats = [1, 2, 3, 4, 5];
   timings: string[] = []
   rows: Seat[][] = [];
   selectedSeats: string[] = [];
-  selectedTime: string = '';
-  noOfSeats=[1,2,3,4,5];
-  selectedNoOfSeats:number=0;
   reservedSeats: ReservedSeat[] = []
-  isBookTicketsVisible: boolean = false;
-  movieId: number = 0;
-  movieName: string = '';
-  isNoOfSeatsVisible:boolean=false;
   theatreData: Theatre = {
     id: 0,
     name: '',
@@ -53,7 +54,6 @@ export class SeatingLayoutComponent implements OnInit {
       const theatreId = params['id'];
       this.movieId = params['movieId'];
       this.movieName = params['movieName'];
-
       this.apiService.getTheatreById(theatreId).subscribe({
         next:
           (res) => {
@@ -101,32 +101,33 @@ export class SeatingLayoutComponent implements OnInit {
     })
   }
 
-  reserveSeat(startingSeatNumber: string): void {
+  reserveSeat(startingSeatNumber: string) {
     const rowIndex = this.rows.findIndex(row => row.some(seat => seat.seatNumber === startingSeatNumber));
-
-    if (rowIndex === -1) {
-      console.error('Row not found.');
-      return;
-    }
-
     const startingSeatIndex = this.rows[rowIndex].findIndex(seat => seat.seatNumber === startingSeatNumber);
-
-    for (let i = startingSeatIndex; i > startingSeatIndex - this.selectedNoOfSeats; i--) {
-      const currentSeat = this.rows[rowIndex][i];
-
-      if (!currentSeat) {
-        console.error('Seat not found.');
-        continue;
+    if (this.selectedSeats.includes(startingSeatNumber)) {
+      const deselectedSeat = this.rows.flat().find(seat => seat.seatNumber === startingSeatNumber);
+      if (deselectedSeat) {
+        deselectedSeat.isReserved = false;
+        const index = this.selectedSeats.indexOf(startingSeatNumber);
+        this.selectedSeats.splice(index, 1)
       }
-
-      const seatIndex = this.selectedSeats.indexOf(currentSeat.seatNumber);
-      if (seatIndex === -1) {
-        if(this.selectedSeats.length<=this.selectedNoOfSeats){
-        this.selectedSeats.push(currentSeat.seatNumber);
-        }
-        else{
-          this.selectedSeats.shift();
-          this.selectedSeats.push(currentSeat.seatNumber);
+    } else {
+      for (let i = startingSeatIndex; i > startingSeatIndex - this.selectedNoOfSeats; i--) {
+        const currentSeat = this.rows[rowIndex][i];
+        const seatIndex = this.selectedSeats.indexOf(currentSeat.seatNumber);
+        if (seatIndex === -1 && !currentSeat.isDisabled) {
+          if (this.selectedSeats.length < this.selectedNoOfSeats) {
+            this.selectedSeats.push(currentSeat.seatNumber);
+          }
+          else {
+            const deselectedSeatNumber = this.selectedSeats.shift();
+            const deselectedSeat = this.rows.flat().find(seat => seat.seatNumber === deselectedSeatNumber);
+            if (deselectedSeat) {
+              deselectedSeat.isReserved = false;
+            }
+            this.selectedSeats.push(currentSeat.seatNumber);
+          }
+          currentSeat.isReserved = true;
         }
       }
     }
@@ -139,9 +140,9 @@ export class SeatingLayoutComponent implements OnInit {
     this.isNoOfSeatsVisible = true;
   }
 
-  onNoOfSeatsClick(number:number){
+  onNoOfSeatsClick(number: number) {
     this.selectedNoOfSeats = number;
-    console.log(this.selectedNoOfSeats);
+    this.isSeatingVisible = true;
   }
 
   bookMovie() {

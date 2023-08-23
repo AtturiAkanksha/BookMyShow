@@ -7,14 +7,17 @@
 <div *ngIf="isNoOfSeatsVisible">
   <h3 class="mt-2">how many seats?</h3>
   <div class="d-flex mb-4">
-    <div *ngFor="let number of noOfSeats">
-      <div class="circle-div" (click)="onNoOfSeatsClick(number)">{{number}}</div>
+    <div *ngFor="let number of noOfSeats ; let i= index" class="circle-div"
+      [ngClass]="{ 'selected': selectedNoOfSeats === number }">
+      <div (click)="onNoOfSeatsClick(number)">{{number}}</div>
     </div>
   </div>
 </div>
-<div class="seating-container">
-  <div class="seat-row" *ngFor="let row of rows">
-    <app-seat [seat]="seat" (selectedSeat)="reserveSeat($event)" *ngFor="let seat of row"></app-seat>
+<div *ngIf="isSeatingVisible" class="seating-container">
+  <div>
+    <div class="seat-row" *ngFor="let row of rows">
+      <app-seat [seat]="seat" (selectedSeat)="reserveSeat($event)" *ngFor="let seat of row"></app-seat>
+    </div>
   </div>
+  <button *ngIf="isBookTicketsVisible" class="btn btn-danger mt-2" (click)="bookMovie()">Book Movie</button>
 </div>
-<button *ngIf="isBookTicketsVisible" class="btn btn-danger" (click)="bookMovie()">Book Movie</button>

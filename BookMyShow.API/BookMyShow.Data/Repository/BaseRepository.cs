@@ -42,11 +42,6 @@ namespace Repository
             }
         }
 
-        public IEnumerable<T> GetAll()
-        {
-            return _entity.ToList();
-        }
-
         public T GetById(int id)
         {
             return _entity.Find(id);

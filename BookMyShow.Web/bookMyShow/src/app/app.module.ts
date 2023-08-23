@@ -17,8 +17,17 @@ import { SeatComponent } from './components/seat/seat.component';
 import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './components/login/login.component';
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
-import { GoogleLoginProvider} from '@abacritt/angularx-social-login';
-import { CommonModule } from '@angular/common'; 
+import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
+import { CommonModule } from '@angular/common';
+
+const config: SocialAuthServiceConfig = {
+  providers: [
+    {
+      id: GoogleLoginProvider.PROVIDER_ID,
+      provider: new GoogleLoginProvider("509587443606-6m6db9couh8d144u1vk11fuhfan3s22o.apps.googleusercontent.com")
+    }
+  ]
+};
 
 @NgModule({
   declarations: [
@@ -47,20 +56,7 @@ import { CommonModule } from '@angular/common';
   providers: [
     {
       provide: 'SocialAuthServiceConfig',
-      useValue: {
-        autoLogin: false,
-        providers: [
-          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(
-              "509587443606-6m6db9couh8d144u1vk11fuhfan3s22o.apps.googleusercontent.com"
-            )
-          },
-        ],
-        onError: (err) => {
-          console.error(err);
-        }
-      } as SocialAuthServiceConfig,
+      useValue: config
     }
   ],
   bootstrap: [AppComponent]

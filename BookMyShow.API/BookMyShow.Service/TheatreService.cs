@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using BookMyShow.DomainModels;
+﻿using BookMyShow.DomainModels;
 using BookMyShow.Data.IRepositories;
 using BookMyShow.Services.Contracts;
 
@@ -23,6 +22,7 @@ namespace BookMyShow.Services
         {
             return _theatreRepository.GetTheatresByMovieId(movieId);
         }
+
         public IEnumerable<Theatre> GetTheatresByLocation(string location)
         {
             return _theatreRepository.GetTheatresByLocation(location);

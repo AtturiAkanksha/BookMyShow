@@ -20,6 +20,7 @@ namespace BookMyShow.API.ResponseDTOs
             };
             return apiResponse;
         }
+
         public static ApiResponse<T> Failure(string message)
         {
             ApiResponse<T> apiResponse = new()

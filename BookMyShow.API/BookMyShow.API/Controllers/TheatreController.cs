@@ -38,8 +38,9 @@ namespace BookMyShowWeb.Controllers
             {
                 Theatre theatre = _theatreService.GetTheatreById(id);
                 return ApiResponse<Theatre>.Success(theatre);
-            } 
-            catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 return ApiResponse<Theatre>.Failure(ex.Message);
             }
         }

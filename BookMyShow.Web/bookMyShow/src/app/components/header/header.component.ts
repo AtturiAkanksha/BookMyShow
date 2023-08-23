@@ -1,4 +1,7 @@
-import { Component} from '@angular/core';
+import { SocialAuthService } from '@abacritt/angularx-social-login';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-header',
@@ -8,5 +11,13 @@ import { Component} from '@angular/core';
 export class HeaderComponent {
   logo: string = 'assets/bookmyshow-logo.svg'
 
-  constructor() { }
+  constructor(private socialAuthService: SocialAuthService, private router:Router, private toastr: ToastrService) { }
+
+  signOut(){
+    this.socialAuthService.signOut().then(() => {
+      this.router.navigate(['/']);
+    }).catch(() => {
+      this.toastr.error('Sorry! Unable to logout')
+  })
+  }
 }

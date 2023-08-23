@@ -12,12 +12,12 @@ import { ApiService } from 'src/app/shared/services/api.service';
 
 export class HomeComponent {
 
+  isError: boolean = false;
   name: string = '';
   id: number = 0;
   theatres: Theatre[] = []
   selectedValue: string = '';
   movies: Movie[] = [];
-  isError: boolean = false;
   response: ResponseData =
     {
       data: null,
@@ -37,7 +37,7 @@ export class HomeComponent {
             this.movies = this.response.data;
           }
           else {
-            this.movies=[];
+            this.movies = [];
             this.isError = true;
           }
         }

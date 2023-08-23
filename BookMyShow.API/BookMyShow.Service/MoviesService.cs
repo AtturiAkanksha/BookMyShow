@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using BookMyShow.Data.IRepositories;
+﻿using BookMyShow.Data.IRepositories;
 using BookMyShow.Services.Contracts;
 
 namespace BookMyShow.Services
@@ -9,7 +8,7 @@ namespace BookMyShow.Services
         private readonly IMoviesRepository _moviesRepository;
         private readonly ITheatreService _theatreService;
 
-        public MoviesService(ITheatreRepository theatreRepository, IMoviesRepository moviesRepository, ITheatreService theatreService)
+        public MoviesService(IMoviesRepository moviesRepository, ITheatreService theatreService)
         {
             _theatreService = theatreService;
             _moviesRepository = moviesRepository;

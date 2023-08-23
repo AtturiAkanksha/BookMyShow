@@ -2,6 +2,7 @@
 using BookMyShow.Services.Contracts;
 using BookMyShow.DomainModels;
 using BookMyShow.API.ResponseDTOs;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BookMyShowWeb.Controllers
 {

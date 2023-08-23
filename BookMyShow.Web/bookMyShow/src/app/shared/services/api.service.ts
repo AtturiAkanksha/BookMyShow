@@ -1,4 +1,4 @@
-import { HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BookingDetails } from '../models/booking-details';
@@ -15,6 +15,11 @@ export class ApiService {
   baseServerUrl = "";
 
   constructor(private http: HttpClient) { }
+
+  public getAccessToken(idToken : string){
+    this.baseServerUrl = `${this.apiUrl}/User/getToken`;
+    return this.http.get<ResponseData>(this.baseServerUrl, { params: { idToken: idToken } })
+  }
 
   public getMovies(locationName: string): Observable<ResponseData> {
     this.baseServerUrl = `${this.apiUrl}/Movies/getMovies`;

@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookMyShow.Data.DataModels
 {
-    //you should be able to have your dat
     [Table("Theatre")]
     public class Theatre
     {
