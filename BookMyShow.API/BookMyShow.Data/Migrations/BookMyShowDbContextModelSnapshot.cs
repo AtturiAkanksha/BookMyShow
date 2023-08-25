@@ -185,6 +185,33 @@ namespace BookMyShow.Data.Migrations
 
                     b.ToTable("Ticket");
                 });
+
+            modelBuilder.Entity("BookMyShow.Data.DataModels.User", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Email");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Name");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Role");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppUser");
+                });
 #pragma warning restore 612, 618
         }
     }

@@ -21,7 +21,7 @@ namespace BookMyShow.API.Controllers
         {
             try
             {
-                Task<string> accessToken = _tokenService.GenerateAccessToken(idToken);
+                Task<string> accessToken = _tokenService.GenerateToken(idToken);
                 return ApiResponse<Task<string>>.Success(accessToken);
             }
             catch (Exception ex)
