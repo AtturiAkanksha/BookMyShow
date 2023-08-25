@@ -8,6 +8,7 @@ namespace BookMyShowWeb.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Policy = "RequireAdminRole")]
     public class MoviesController : ControllerBase
     {
         private readonly IMoviesService _moviesService;

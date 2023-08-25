@@ -20,6 +20,7 @@ namespace BookMyShow.API
             CreateMap<BookingRequest, Ticket>()
                 .ForMember(dest => dest.SeatNumbers, opt => opt.MapFrom(src => String.Join(",", src.SeatNumbers)));
             CreateMap<ReservedSeat, ReserveSeat>().ReverseMap();
+            CreateMap<Data.DataModels.User, DomainModels.User>().ReverseMap();
         }
     }
 }

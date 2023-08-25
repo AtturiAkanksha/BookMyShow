@@ -22,5 +22,6 @@ namespace BookMyShow.Data
         public virtual DbSet<Theatre> Theatres { get; set; }
         public virtual DbSet<Ticket> BookedShows { get; set; }
         public virtual DbSet<ReserveSeat> ReservedSeats { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

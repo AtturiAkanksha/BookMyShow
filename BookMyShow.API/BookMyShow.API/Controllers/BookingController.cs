@@ -2,11 +2,13 @@
 using BookMyShow.Services.Contracts;
 using BookMyShow.DomainModels;
 using BookMyShow.API.ResponseDTOs;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BookMyShow.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BookingController : ControllerBase
     {
         private readonly IBookingService _bookingService;
