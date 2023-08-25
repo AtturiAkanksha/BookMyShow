@@ -11,13 +11,14 @@ import { ToastrService } from 'ngx-toastr';
 export class HeaderComponent {
   logo: string = 'assets/bookmyshow-logo.svg'
 
-  constructor(private socialAuthService: SocialAuthService, private router:Router, private toastr: ToastrService) { }
+  constructor(private socialAuthService: SocialAuthService, private router: Router, private toastr: ToastrService) { }
 
-  signOut(){
+  signOut() {
     this.socialAuthService.signOut().then(() => {
+      localStorage.removeItem('token');
       this.router.navigate(['/']);
     }).catch(() => {
       this.toastr.error('Sorry! Unable to logout')
-  })
+    })
   }
 }

@@ -2,23 +2,25 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
-import { HeaderComponent } from './components/header/header.component';
+import { HomeComponent } from './authenticated/home/home.component';
+import { HeaderComponent } from './authenticated/header/header.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
-import { SeatingLayoutComponent } from './components/seating-layout/seating-layout.component';
+import { SeatingLayoutComponent } from './authenticated/seating-layout/seating-layout.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { PopupComponent } from './components/popup/popup.component';
+import { PopupComponent } from './authenticated/popup/popup.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
-import { TheatresComponent } from './components/theatres/theatres.component';
-import { SeatComponent } from './components/seat/seat.component';
+import { TheatresComponent } from './authenticated/theatres/theatres.component';
+import { SeatComponent } from './authenticated/seat/seat.component';
 import { ToastrModule } from 'ngx-toastr';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './un-authenticated/login/login.component';
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
 import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { CommonModule } from '@angular/common';
+import { AuthenticatedModule } from './authenticated/authenticated.module';
+import { UnAuthenticatedModule } from './un-authenticated/un-authenticated.module';
 
 const config: SocialAuthServiceConfig = {
   providers: [
@@ -51,6 +53,8 @@ const config: SocialAuthServiceConfig = {
     MatDialogModule,
     SocialLoginModule,
     CommonModule,
+    AuthenticatedModule,
+    UnAuthenticatedModule,
     ToastrModule.forRoot()
   ],
   providers: [

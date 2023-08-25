@@ -10,19 +10,22 @@ import { ApiService } from 'src/app/shared/services/api.service';
 })
 
 export class LoginComponent {
-  accessToken:string='';
+  accessToken: string = '';
 
-  constructor(private socialAuthService: SocialAuthService, private router:Router,  private apiService:ApiService) { }
+  constructor(private socialAuthService: SocialAuthService, private router: Router, private apiService: ApiService) { }
 
   ngOnInit() {
     this.socialAuthService.authState.subscribe((user) => {
       if (user !== null) {
         this.apiService.getAccessToken(user.idToken).subscribe({
-          next:(res)=> console.log(res.data)
+          next: (res) => {
+            if (res.data['result'] != null) {
+              localStorage.setItem("token", res.data['result'])
+              this.router.navigate(['/home'])
+            }
+          }
         })
-        this.router.navigate(['/home'])
       }
     });
   }
-
 }
