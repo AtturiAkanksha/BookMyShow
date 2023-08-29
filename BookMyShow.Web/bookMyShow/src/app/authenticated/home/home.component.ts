@@ -11,20 +11,13 @@ import { ApiService } from 'src/app/shared/services/api.service';
 })
 
 export class HomeComponent {
-
   isError: boolean = false;
   name: string = '';
   id: number = 0;
   theatres: Theatre[] = []
   selectedValue: string = '';
   movies: Movie[] = [];
-  response: ResponseData =
-    {
-      data: null,
-      isSuccess: false,
-      status: 400,
-      error: ''
-    }
+  response!: ResponseData;
 
   constructor(private apiService: ApiService) { }
 

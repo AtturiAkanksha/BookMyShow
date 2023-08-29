@@ -5,7 +5,7 @@ import { SeatingLayoutComponent } from './seating-layout/seating-layout.componen
 import { TheatresComponent } from './theatres/theatres.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'theatres/:movieId/:movieName', component: TheatresComponent },
   { path: 'theatre/:movieId/:movieName/:id/:name', component: SeatingLayoutComponent }
 ];
@@ -14,4 +14,6 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
+
 export class AuthenticatedRoutingModule { }
+

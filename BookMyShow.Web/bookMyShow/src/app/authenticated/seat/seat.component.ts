@@ -9,11 +9,7 @@ import { Seat } from 'src/app/shared/models/seat';
 export class SeatComponent {
 
   @Output() selectedSeat = new EventEmitter<string>();
-  @Input() seat: Seat = {
-    seatNumber: '',
-    isReserved: false,
-    isDisabled: false
-  }
+  @Input() seat!: Seat;
 
   onSeatClick(seatNumber: string) {
     this.selectedSeat.emit(seatNumber);

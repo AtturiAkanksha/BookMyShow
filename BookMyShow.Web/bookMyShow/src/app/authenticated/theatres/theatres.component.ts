@@ -16,12 +16,7 @@ export class TheatresComponent {
   movieId: number = 0;
   movieName: string = '';
   theatres: Theatre[] = [];
-  response: ResponseData = {
-    data: null,
-    isSuccess: false,
-    status: 200,
-    error: ''
-  }
+  response!: ResponseData;
 
   constructor(private route: ActivatedRoute, private apiService: ApiService) { }
 

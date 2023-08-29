@@ -10,6 +10,6 @@ export class ReservedSeat extends Seat {
         this.theatreId = theatreId;
         this.showTime = showTime;
         this.seatNumber = seatNumber;
-        this.movieId = movieId
+        this.movieId = movieId;
     }
 }
