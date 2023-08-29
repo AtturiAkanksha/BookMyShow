@@ -10,16 +10,23 @@ import { ResponseData } from '../models/response-data';
 })
 
 export class ApiService {
-
-  apiUrl: string = "https://localhost:7269/api"
   baseServerUrl = "";
-  token = localStorage.getItem('token');
+  token: string = '';
+  apiUrl: string = "https://localhost:7269/api"
 
-  constructor(private http: HttpClient) { }
-  headers = new HttpHeaders({
-    'Authorization': `Bearer ${this.token}`,
-    'content-Type': 'application/json'
-  })
+  constructor(private http: HttpClient) {
+  }
+
+  UpdateToken(newToken: string) {
+    this.token = newToken;
+  }
+
+  private get headers(): HttpHeaders {
+    return new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`,
+      'content-Type': 'application/json'
+    });
+  }
 
   public getAccessToken(idToken: string) {
     this.baseServerUrl = `${this.apiUrl}/Authentication/getToken`;
@@ -28,22 +35,22 @@ export class ApiService {
 
   public getMovies(locationName: string): Observable<ResponseData> {
     this.baseServerUrl = `${this.apiUrl}/Movies/getMovies`;
-    return this.http.get<ResponseData>(this.baseServerUrl, { params: { location: locationName }, headers: this.headers })
+    return this.http.get<ResponseData>(this.baseServerUrl, { params: { location: locationName } })
   }
 
   public getTheatres(id: number): Observable<ResponseData> {
     this.baseServerUrl = `${this.apiUrl}/Theatre/getTheatres`;
-    return this.http.get<ResponseData>(this.baseServerUrl, { params: { id }, headers: this.headers })
+    return this.http.get<ResponseData>(this.baseServerUrl, { params: { id } })
   }
 
   public getTheatreById(id: number): Observable<ResponseData> {
     this.baseServerUrl = `${this.apiUrl}/Theatre/${id}`;
-    return this.http.get<ResponseData>(this.baseServerUrl, { headers: this.headers })
+    return this.http.get<ResponseData>(this.baseServerUrl)
   }
 
   public reservedSeats(request: ReservedSeat): Observable<ResponseData> {
     this.baseServerUrl = `${this.apiUrl}/Theatre/reservedSeatsData`;
-    return this.http.post<ResponseData>(this.baseServerUrl, request, { headers: this.headers });
+    return this.http.post<ResponseData>(this.baseServerUrl, request);
   }
 
   public bookMovie(data: BookingDetails): Observable<ResponseData> {

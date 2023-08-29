@@ -16,9 +16,10 @@ import { ResponseData } from 'src/app/shared/models/response-data';
 })
 
 export class SeatingLayoutComponent implements OnInit {
-  isBookTicketsVisible: boolean = false;
+  isBookMovieVisible: boolean = false;
   isNoOfSeatsVisible: boolean = false;
   isSeatingVisible: boolean = false;
+  isUserLogged: boolean = false;
   selectedNoOfSeats: number = 0;
   movieId: number = 0;
   movieName: string = '';
@@ -28,26 +29,10 @@ export class SeatingLayoutComponent implements OnInit {
   rows: Seat[][] = [];
   selectedSeats: string[] = [];
   reservedSeats: ReservedSeat[] = []
-  theatreData: Theatre = {
-    id: 0,
-    name: '',
-    rows: 0,
-    columns: 0,
-    movieIds: [],
-    showTime: "",
-    location: '',
-    ticketPrice: 0
-  }
-  response: ResponseData = {
-    data: null,
-    isSuccess: false,
-    status: 200,
-    error: ''
-  }
+  theatreData!: Theatre;
+  response!: ResponseData;
 
-  constructor(private dialog: MatDialog,
-    private apiService: ApiService, private route: ActivatedRoute) {
-  }
+  constructor(private dialog: MatDialog, private apiService: ApiService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -111,7 +96,8 @@ export class SeatingLayoutComponent implements OnInit {
         const index = this.selectedSeats.indexOf(startingSeatNumber);
         this.selectedSeats.splice(index, 1)
       }
-    } else {
+    }
+    else {
       for (let i = startingSeatIndex; i > startingSeatIndex - this.selectedNoOfSeats; i--) {
         const currentSeat = this.rows[rowIndex][i];
         const seatIndex = this.selectedSeats.indexOf(currentSeat.seatNumber);
@@ -136,7 +122,7 @@ export class SeatingLayoutComponent implements OnInit {
   onSelectTime(time: string) {
     this.selectedTime = time.toString();
     this.populateSeatData();
-    this.isBookTicketsVisible = true;
+    this.isBookMovieVisible = true;
     this.isNoOfSeatsVisible = true;
   }
 
@@ -146,6 +132,10 @@ export class SeatingLayoutComponent implements OnInit {
   }
 
   bookMovie() {
+    var user = JSON.parse(localStorage.getItem('user') || '{}')
+    if (user.length) {
+      this.isUserLogged = true;
+    }
     const bookingDetails: BookingDetails = {
       movieName: this.movieName,
       movieId: this.movieId,
@@ -158,7 +148,7 @@ export class SeatingLayoutComponent implements OnInit {
     }
     if (bookingDetails.seatNumbers.length != 0) {
       const popUp = this.dialog.open(PopupComponent, {
-        data: bookingDetails
+        data: { bookingDetails: bookingDetails, isUserLogged: this.isUserLogged }
       });
       popUp.afterClosed().subscribe(
         result => {
@@ -180,3 +170,4 @@ export class SeatingLayoutComponent implements OnInit {
     }
   }
 }
+

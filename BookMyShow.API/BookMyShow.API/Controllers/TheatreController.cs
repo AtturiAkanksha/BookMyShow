@@ -8,7 +8,6 @@ namespace BookMyShowWeb.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
 
     public class TheatreController : ControllerBase
     {

@@ -1,13 +1,25 @@
-<h1 mat-dialog-title>Seat Reservation</h1>
-<div mat-dialog-content>
-  <p>Movie Name:{{bookingDetails.movieName}}</p>
-  <p>date:{{bookingDetails.date}}</p>
-  <p>Theatre: {{ bookingDetails.theatreName }}</p>
-  <p>seats booked:{{bookingDetails.seatNumbers}}</p>
-  <p>price:{{bookingDetails.totalAmount}}</p>
-  <p>timings:{{bookingDetails.showTime}}</p>
+<div *ngIf="isUserLogged">
+  <h1 mat-dialog-title>Seat Reservation</h1>
+  <div mat-dialog-content>
+    <p>Movie Name:{{bookingDetails.movieName}}</p>
+    <p>Date:{{bookingDetails.date}}</p>
+    <p>Theatre: {{ bookingDetails.theatreName }}</p>
+    <p>Seats Booked:{{bookingDetails.seatNumbers}}</p>
+    <p>Price:{{bookingDetails.totalAmount}}</p>
+    <p>Timings:{{bookingDetails.showTime}}</p>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button [mat-dialog-close]="true" color="primary" (click)="confirmBooking()">Confirm Booking</button>
+    <button mat-button [mat-dialog-close]="true">Close</button>
+  </div>
 </div>
-<div mat-dialog-actions>
-  <button mat-raised-button color="primary" (click)="confirmBooking()">Confirm Booking</button>
-  <button mat-button [mat-dialog-close]="true">Close</button>
+<div *ngIf="!isUserLogged">
+  <div mat-dialog-content>
+    <p>Please login into BookMyShow before booking tickets.</p>
+    <p>click the below icon to login with google</p>
+    <asl-google-signin-button></asl-google-signin-button>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="true">Close</button>
+  </div>
 </div>

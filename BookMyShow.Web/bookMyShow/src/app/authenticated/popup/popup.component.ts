@@ -1,4 +1,5 @@
-import { Component, Inject } from '@angular/core';
+import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { BookingDetails } from 'src/app/shared/models/booking-details';
@@ -10,14 +11,32 @@ import { ApiService } from 'src/app/shared/services/api.service';
   styleUrls: ['./popup.component.scss']
 })
 
-export class PopupComponent {
+export class PopupComponent implements OnInit {
 
-  bookingDetails = this.data;
+  bookingDetails: BookingDetails = this.data.bookingDetails;
+  isUserLogged: boolean = this.data.isUserLogged;
+  socialUser!: SocialUser;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: BookingDetails, private toastr: ToastrService, private apiService: ApiService) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private socialAuthService: SocialAuthService, private toastr: ToastrService, private apiService: ApiService) { }
+
+  ngOnInit(): void {
+    this.socialAuthService.authState.subscribe((user) => {
+      this.socialUser = user
+      if (this.socialUser !== null) {
+        this.apiService.getAccessToken(this.socialUser.idToken).subscribe({
+          next: (res) => {
+            localStorage.setItem('token', res.data['result'])
+            localStorage.setItem('user', JSON.stringify(this.socialUser))
+            this.isUserLogged = true;
+            this.apiService.UpdateToken(res.data['result'])
+          }
+        })
+      }
+    })
+  }
 
   confirmBooking() {
-    this.apiService.bookMovie(this.data).subscribe(
+    this.apiService.bookMovie(this.bookingDetails).subscribe(
       {
         next:
           (res) => {

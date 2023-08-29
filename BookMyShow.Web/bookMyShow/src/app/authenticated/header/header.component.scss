@@ -8,17 +8,25 @@
         font-size: 12px;
     }
     .custom-ml {
-        margin-left: 52px;
+        margin-left: 5px;
     }
     .header-input {
         width: 320px;
     }
     .right {
         display: flex;
+        justify-content: space-evenly;
         align-items: center;
         p {
             display: flex;
             margin-bottom: 0;
+        }
+        h4 {
+            margin-bottom: 0;
+            margin-right: 5px;
+        }
+        .bi-person-circle {
+            font-size: x-large;
         }
         #Locations {
             background-color: rgba(44, 52, 54, 255);
@@ -31,7 +39,7 @@
             align-items: center;
             display: flex;
             width: 86px;
-            margin-right: 30px;
+            margin-right: 20px;
         }
     }
 }

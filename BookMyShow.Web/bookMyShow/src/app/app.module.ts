@@ -15,21 +15,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { TheatresComponent } from './authenticated/theatres/theatres.component';
 import { SeatComponent } from './authenticated/seat/seat.component';
 import { ToastrModule } from 'ngx-toastr';
-import { LoginComponent } from './un-authenticated/login/login.component';
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
 import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { CommonModule } from '@angular/common';
 import { AuthenticatedModule } from './authenticated/authenticated.module';
 import { UnAuthenticatedModule } from './un-authenticated/un-authenticated.module';
-
-const config: SocialAuthServiceConfig = {
-  providers: [
-    {
-      id: GoogleLoginProvider.PROVIDER_ID,
-      provider: new GoogleLoginProvider("509587443606-6m6db9couh8d144u1vk11fuhfan3s22o.apps.googleusercontent.com")
-    }
-  ]
-};
 
 @NgModule({
   declarations: [
@@ -40,7 +30,6 @@ const config: SocialAuthServiceConfig = {
     PopupComponent,
     TheatresComponent,
     SeatComponent,
-    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,8 +49,16 @@ const config: SocialAuthServiceConfig = {
   providers: [
     {
       provide: 'SocialAuthServiceConfig',
-      useValue: config
-    }
+      useValue: {
+        autoLogin: true,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider("509587443606-6m6db9couh8d144u1vk11fuhfan3s22o.apps.googleusercontent.com",{oneTapEnabled:true}),
+          },
+        ],
+      } as SocialAuthServiceConfig,
+    },
   ],
   bootstrap: [AppComponent]
 })
