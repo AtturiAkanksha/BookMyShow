@@ -1,4 +1,4 @@
-import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
+import { FacebookLoginProvider, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -32,6 +32,10 @@ export class HeaderComponent implements OnInit {
         })
       }
     })
+  }
+
+  loginWithFacebook() {
+    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
 
   signOut() {

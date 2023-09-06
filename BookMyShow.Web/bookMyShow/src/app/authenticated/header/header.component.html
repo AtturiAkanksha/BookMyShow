@@ -6,7 +6,7 @@
                 placeholder="search for Movies, Events, Plays, Sports and Activities">
         </div>
         <div class="right">
-            <p *ngIf="!isLoggedIn">Sign In</p>
+            <button *ngIf="!isLoggedIn" class="btn btn-danger" (click)="loginWithFacebook()">FB login</button>
             <asl-google-signin-button *ngIf="!isLoggedIn" class="button btn custom-ml"></asl-google-signin-button>
             <button class="btn btn-danger" (click)="signOut()" *ngIf="isLoggedIn">Sign Out</button>
             <h4 *ngIf="isLoggedIn">{{socialUser.firstName}}</h4>
