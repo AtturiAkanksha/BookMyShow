@@ -20,6 +20,8 @@ import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { CommonModule } from '@angular/common';
 import { AuthenticatedModule } from './authenticated/authenticated.module';
 import { UnAuthenticatedModule } from './un-authenticated/un-authenticated.module';
+import { PublicClientApplication } from '@azure/msal-browser';
+
 
 @NgModule({
   declarations: [
