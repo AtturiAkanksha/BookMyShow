@@ -1,13 +1,14 @@
 <div class="div-header">
     <div class="header-upper text-white">
         <div>
-            <img [src]="logo" class="logo custom-ml" alt="">
+            <img [src]="logo" class="custom-ml" alt="">
             <input type="text" class="header-input \F52A text-small custom-ml"
                 placeholder="search for Movies, Events, Plays, Sports and Activities">
         </div>
         <div class="right">
-            <button *ngIf="!isLoggedIn" class="btn btn-danger" (click)="loginWithFacebook()">FB login</button>
+            <button *ngIf="!isLoggedIn" class="btn p-0 btn-danger" (click)="loginWithFacebook()">FB Login</button>
             <asl-google-signin-button *ngIf="!isLoggedIn" class="button btn custom-ml"></asl-google-signin-button>
+            <img src="assets/microsoft-logo.png" *ngIf="!isLoggedIn" (click)="loginWithMicrosoft()" class="logo">
             <button class="btn btn-danger" (click)="signOut()" *ngIf="isLoggedIn">Sign Out</button>
             <h4 *ngIf="isLoggedIn">{{socialUser.firstName}}</h4>
             <i *ngIf="isLoggedIn" class="bi bi-person-circle"></i>

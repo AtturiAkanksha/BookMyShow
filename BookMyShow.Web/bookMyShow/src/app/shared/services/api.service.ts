@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AuthRequest } from '../models/auth-request';
 import { BookingDetails } from '../models/booking-details';
 import { ReservedSeat } from '../models/reserved-seat';
 import { ResponseData } from '../models/response-data';
@@ -28,9 +29,9 @@ export class ApiService {
     });
   }
 
-  public getAccessToken(idToken: string) {
+  public getAccessToken(authRequest: AuthRequest) {
     this.baseServerUrl = `${this.apiUrl}/Authentication/getToken`;
-    return this.http.get<ResponseData>(this.baseServerUrl, { params: { idToken: idToken } })
+    return this.http.post<ResponseData>(this.baseServerUrl, authRequest)
   }
 
   public getMovies(locationName: string): Observable<ResponseData> {

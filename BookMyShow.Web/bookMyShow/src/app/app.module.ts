@@ -15,13 +15,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { TheatresComponent } from './authenticated/theatres/theatres.component';
 import { SeatComponent } from './authenticated/seat/seat.component';
 import { ToastrModule } from 'ngx-toastr';
-import { SocialLoginModule, SocialAuthServiceConfig, FacebookLoginProvider } from '@abacritt/angularx-social-login';
+import { SocialLoginModule, SocialAuthServiceConfig, FacebookLoginProvider, MicrosoftLoginProvider } from '@abacritt/angularx-social-login';
 import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { CommonModule } from '@angular/common';
 import { AuthenticatedModule } from './authenticated/authenticated.module';
 import { UnAuthenticatedModule } from './un-authenticated/un-authenticated.module';
-import { PublicClientApplication } from '@azure/msal-browser';
-
 
 @NgModule({
   declarations: [
@@ -61,6 +59,12 @@ import { PublicClientApplication } from '@azure/msal-browser';
           {
             id: FacebookLoginProvider.PROVIDER_ID,
             provider: new FacebookLoginProvider('823247212606180'),
+          },
+          {
+            id: MicrosoftLoginProvider.PROVIDER_ID,
+            provider: new MicrosoftLoginProvider(
+              '469d666d-9933-4f8d-8d1c-cf12dea1f75c'
+            ),
           },
         ],
         onError: (err) => {

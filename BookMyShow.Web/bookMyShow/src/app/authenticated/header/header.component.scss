@@ -2,7 +2,7 @@
     background-color: rgba(44, 52, 54, 255);
     height: 50px;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     display: flex;
     .text-small {
         font-size: 12px;
@@ -17,6 +17,11 @@
         display: flex;
         justify-content: space-evenly;
         align-items: center;
+        .logo {
+            width: 30px;
+            height: 31px;
+            border-radius: 5px;
+        }
         p {
             display: flex;
             margin-bottom: 0;

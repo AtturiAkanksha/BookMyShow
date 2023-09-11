@@ -1,7 +1,8 @@
-import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
+import { MicrosoftLoginProvider, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
+import { AuthRequest } from 'src/app/shared/models/auth-request';
 import { BookingDetails } from 'src/app/shared/models/booking-details';
 import { ApiService } from 'src/app/shared/services/api.service';
 
@@ -16,6 +17,10 @@ export class PopupComponent implements OnInit {
   bookingDetails: BookingDetails = this.data.bookingDetails;
   isUserLogged: boolean = this.data.isUserLogged;
   socialUser!: SocialUser;
+  authRequest: AuthRequest = {
+    provider: '',
+    idToken: '',
+  }
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private socialAuthService: SocialAuthService, private toastr: ToastrService, private apiService: ApiService) { }
 
@@ -23,16 +28,27 @@ export class PopupComponent implements OnInit {
     this.socialAuthService.authState.subscribe((user) => {
       this.socialUser = user
       if (this.socialUser !== null) {
-        this.apiService.getAccessToken(this.socialUser.idToken).subscribe({
+        this.authRequest.idToken = this.socialUser.idToken;
+        this.authRequest.provider = this.socialUser.provider;
+        this.apiService.getAccessToken(this.authRequest).subscribe({
           next: (res) => {
+            this.isUserLogged = true;
             localStorage.setItem('token', res.data['result'])
             localStorage.setItem('user', JSON.stringify(this.socialUser))
-            this.isUserLogged = true;
             this.apiService.UpdateToken(res.data['result'])
           }
         })
       }
     })
+  }
+
+  loginWithMicrosoft() {
+    this.socialAuthService.signIn(MicrosoftLoginProvider.PROVIDER_ID).then(user => {
+      this.socialUser = user;
+      if (this.socialUser) {
+        this.isUserLogged = true;
+      }
+    });
   }
 
   confirmBooking() {

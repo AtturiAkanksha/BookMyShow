@@ -15,9 +15,11 @@
 </div>
 <div *ngIf="!isUserLogged">
   <div mat-dialog-content>
-    <p>Please login into BookMyShow before booking tickets.</p>
-    <p>click the below icon to login with google</p>
-    <asl-google-signin-button></asl-google-signin-button>
+    <p>Please login before booking tickets.</p>
+    <div class="d-flex">
+      <asl-google-signin-button></asl-google-signin-button>
+      <img src="assets/microsoft-logo.png" (click)="loginWithMicrosoft()" class="logo">
+    </div>
   </div>
   <div mat-dialog-actions>
     <button mat-button [mat-dialog-close]="true">Close</button>
