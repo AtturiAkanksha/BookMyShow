@@ -20,6 +20,7 @@ import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { CommonModule } from '@angular/common';
 import { AuthenticatedModule } from './authenticated/authenticated.module';
 import { UnAuthenticatedModule } from './un-authenticated/un-authenticated.module';
+import { environment } from 'src/environment';
 
 @NgModule({
   declarations: [
@@ -54,17 +55,15 @@ import { UnAuthenticatedModule } from './un-authenticated/un-authenticated.modul
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider("509587443606-6m6db9couh8d144u1vk11fuhfan3s22o.apps.googleusercontent.com"),
+            provider: new GoogleLoginProvider(environment.googleClientId),
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('823247212606180'),
+            provider: new FacebookLoginProvider(environment.facebookClientId),
           },
           {
             id: MicrosoftLoginProvider.PROVIDER_ID,
-            provider: new MicrosoftLoginProvider(
-              '469d666d-9933-4f8d-8d1c-cf12dea1f75c'
-            ),
+            provider: new MicrosoftLoginProvider(environment.microsoftClientId),
           },
         ],
         onError: (err) => {

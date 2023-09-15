@@ -5,6 +5,7 @@ import { AuthRequest } from '../models/auth-request';
 import { BookingDetails } from '../models/booking-details';
 import { ReservedSeat } from '../models/reserved-seat';
 import { ResponseData } from '../models/response-data';
+import { environment } from 'src/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ import { ResponseData } from '../models/response-data';
 export class ApiService {
   baseServerUrl = "";
   token: string = '';
-  apiUrl: string = "https://localhost:7269/api"
+  apiUrl: string = environment.apiUrl;
 
   constructor(private http: HttpClient) {
   }
