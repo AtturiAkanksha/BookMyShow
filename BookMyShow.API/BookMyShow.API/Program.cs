@@ -59,6 +59,12 @@ builder.Services.AddSingleton(mapper);
 builder.Services.AddDbContext<BookMyShowDbContext>(options =>
           options.UseSqlServer(builder.Configuration.GetConnectionString("BookMyShowConnectionString")));
 
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration["RedisCachePortNumber"];
+    options.InstanceName = "bookMyShow_";
+});
+
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 builder.Services.AddScoped<IMoviesRepository, MoviesRepository>();

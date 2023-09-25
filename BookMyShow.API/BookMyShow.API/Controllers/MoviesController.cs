@@ -2,6 +2,8 @@
 using BookMyShow.Services.Contracts;
 using BookMyShow.DomainModels;
 using BookMyShow.API.ResponseDTOs;
+using Microsoft.Extensions.Caching.Distributed;
+using BookMyShow.Services;
 
 namespace BookMyShowWeb.Controllers
 {
@@ -11,10 +13,11 @@ namespace BookMyShowWeb.Controllers
     public class MoviesController : ControllerBase
     {
         private readonly IMoviesService _moviesService;
-
-        public MoviesController(IMoviesService moviesService)
+        private readonly IDistributedCache _cache;
+        public MoviesController(IMoviesService moviesService, IDistributedCache cache)
         {
             _moviesService = moviesService;
+            _cache = cache;
         }
 
         [HttpGet]
@@ -23,8 +26,15 @@ namespace BookMyShowWeb.Controllers
         {
             try
             {
-                IEnumerable<Movie> movies = _moviesService.GetMovies(location);
-                return ApiResponse<IEnumerable<Movie>>.Success(movies);
+                string key = $"moviesIn{location}";
+                IEnumerable<Movie> cachedMovies = _cache.GetData<IEnumerable<Movie>>(key);
+                if (cachedMovies == null)
+                {
+                    IEnumerable<Movie> movies = _moviesService.GetMovies(location);
+                    _cache.SetData(key, movies);
+                    return ApiResponse<IEnumerable<Movie>>.Success(movies);
+                }
+                return ApiResponse<IEnumerable<Movie>>.Success(cachedMovies);
             }
             catch (Exception ex)
             {
